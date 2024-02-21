@@ -1,2 +1,3 @@
 ./install/
 ./dracula.zsh-theme
+./.config/nvim
