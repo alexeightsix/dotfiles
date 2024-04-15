@@ -12,6 +12,7 @@ floating_modifier $mod
 
 exec --no-startup-id dex-autostart --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id picom --config /home/alex/kickstart/dotfiles/picom.conf -b
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -117,16 +118,16 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
-set $ws1 "1:"
-set $ws2 "2:"
-set $ws3 "3:"
-set $ws4 "4:"
+set $ws1 "1: "
+set $ws2 "2: "
+set $ws3 "3: "
+set $ws4 "4: "
 set $ws5 "5"
 set $ws6 "6: "
-set $ws7 "7:"
-set $ws8 "8:♫"
+set $ws7 "7: "
+set $ws8 "8:♫ "
 set $ws9 "9"
-set $ws10 "10:"
+set $ws10 "10:" 
 
 assign [class="TelegramDesktop"] $ws7
 assign [class="^[Tt]elegram.*"] $ws7
@@ -139,6 +140,11 @@ for_window [class=Thunderbird] focus
 for_window [class=TelegramDesktop] focus
 
 for_window [class="Zoom" instance="yad"] floating enable
+
+assign [class="^[fF]irefox$"]   $ws3
+assign [class="^[Tt]elegram.*"] $ws7
+assign [class="^[sS]lack$"]     $ws7
+assign [class="^[zZ]oom$"]      $ws9
 
 set $darkbluetrans	#08052be6
 set $darkblue		    #08052b
@@ -170,29 +176,21 @@ bar {
     strip_workspace_numbers yes
 
 		colors {
-      separator           $purple
-      background          $darkgrey
-      statusline          $white
-      focused_workspace	  $mediumgrey	   	$grey		$darkgrey	$purple
-      active_workspace	  $lightblue      	$mediumgrey	$darkgrey	$purple
-      inactive_workspace	$darkgrey   		$darkgrey	$grey		$purple
-      urgent_workspace	  $urgentred	    	$urgentred	$white		$purple
-      background #282A36
-      statusline #F8F8F2
-      separator  #44475A
-      focused_workspace  #44475A #44475A #F8F8F2
-      active_workspace   #282A36 #44475A #F8F8F2
-      inactive_workspace #282A36 #282A36 #BFBFBF
-      urgent_workspace   #FF5555 #FF5555 #F8F8F2
+      active_workspace	 $lightblue $mediumgrey $darkgrey	$purple
+      background         $darkgrey
       binding_mode       #FF5555 #FF5555 #F8F8F2
+      focused_workspace	 $lightblue	$lightblue $white
+      inactive_workspace $darkgrey $darkgrey $grey $purple
+      separator          $purple
+      statusline         $white
+      urgent_workspace	 $urgentred $urgentred $white $purple    
     }
 }
 
 bindsym $mod+Shift+s exec "systemctl suspend"
-bindsym $mod+d exec rofi -modi drun -show drun -config ~/.config/rofi/rofidmenu.rasi
+bindsym $mod+d exec --no-startup-id "dmenu_run -nf '#BBBBBB' -nb '#222222' -sb '$lightblue' -sf '#EEEEEE' -fn 'monospace-10'"
 
 for_window [class="^.*"] border pixel 0
 for_window [class="^[zZ]oom$"] floating enable 
-
 
 exec --no-startup-id feh --bg-fill /home/alex/kickstart/wallpaper.png

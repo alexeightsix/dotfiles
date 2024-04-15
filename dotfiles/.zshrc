@@ -2,8 +2,10 @@ alias gc='git checkout $(git branch -a | fzf )'
 alias gs="git status"
 alias ld=lazydocker
 alias lg=lazygit
-alias vi=nvim
+alias vi=nvim --clean
 alias vim=nvim
+alias dnf="sudo snapper -c root create --description before-dnf && sudo dnf"
+
 
 export DISABLE_AUTO_UPDATE=true 
 export DISABLE_UPDATE_PROMPT=true

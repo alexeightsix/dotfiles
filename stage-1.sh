@@ -1,11 +1,19 @@
 dnf copr enable @go-sig/golang-rawhide -y
 dnf copr enable atim/i3status-rust -y
+dnf copr enable atim/lazydocker -y
+dnf copr enable atim/lazygit -y
 dnf copr enable atim/zoxide  -y
+dnf copr enable maveonair/jetbrains-mono-nerd-fonts -y
+
+dnf install -y https://rpms.remirepo.net/fedora/remi-release-$(cut -d ' ' -f 3 /etc/fedora-release).rpm
+dnf config-manager -y --set-enabled remi
 
 dnf update && \
 dnf upgrade -y && \
 dnf install \
   alacritty \
+  arandr \
+  btrfs-assistant \
   chromium \
   cmake \
   cronie \
@@ -18,43 +26,46 @@ dnf install \
   flameshot \
   flatpak \
   fzf \
-  btrfs-assistant \
   gimp \
   git \
   golang \
   gparted \
   gpick \
-  picom \
   i3status-rust \
+  jetbrains-mono-nerd-fonts  \
+  jetbrains-mononl-nerd-fonts \
   jq \
+  lazydocker \
+  lazygit \
   lua \
   make \
   ncdu \
   neofetch \
-  neovim-0.9.5-2.fc39 \
-  snapper \
+  neovim-0.9.5-4.fc40 \
   nmap \
   nodejs \
+  php83 \
+  php83-syspaths \
+  picom \
   python3 \
   ripgrep \
   rofi \
   rsync \
+  snapper \
   tmux \
   vlc \
+  xclip \
   zoxide \
-  zsh  -y && \
-
-## FONTS
-dnf copr enable maveonair/jetbrains-mono-nerd-fonts -y && \
-dnf install jetbrains-mono-nerd-fonts jetbrains-mononl-nerd-fonts -y
+  zsh -y && \
 
 ## FLATPAKS
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-flathub install flathub com.github.IsmaelMartinez.teams_for_linux -y
+flatpak install flathub com.github.IsmaelMartinez.teams_for_linux -y
 flatpak install flathub com.discordapp.Discord -y
 flatpak install flathub com.slack.Slack -y
 flatpak install flathub com.spotify.Client -y
 flatpak install flathub org.telegram.desktop -y
+flatpak install flathub md.obsidian.Obsidian -y
 
 ## ZOOM
 wget https://zoom.us/client/5.17.11.3835/zoom_x86_64.rpm && \
@@ -72,13 +83,9 @@ systemctl enable docker && \
 systemctl start docker && \
 usermod -aG docker alex
 
-## CRON
-systemctl enable crond.service
-systemctl start crond.service
-
-## SSH
-systemctl enable sshd 
-systemctl start sshd 
+## SYSTEMD
+systemctl enable --now crond.service
+systemctl enable --now sshd 
 
 ## NEOVIM
 find /home/alex/.config/nvim -delete
@@ -96,4 +103,31 @@ find /home/alex/.config/i3 -delete
 mkdir -p /home/alex/.config/i3
 ln -s /home/alex/kickstart/dotfiles/i3config /home/alex/.config/i3/config
 
-dnf remove volumeicon -y
+# COMPOSER
+curl -sS https://getcomposer.org/installer | php  
+mv composer.phar /usr/local/bin/composer
+chmod +x /usr/local/bin/composer
+
+# DISABLE SPEAKER
+touch /etc/modprobe.d/nobeep.conf && \
+tee /etc/modprobe.d/nobeep.conf << END
+blacklist pcspkr
+blacklist snd_pcsp
+END
+
+# ADD FLATPAKS TO DMENU
+echo "" > /usr/bin/dmenu_run && \
+tee /usr/bin/dmenu_run << END
+#!/usr/bin/sh
+export PATH=$PATH:/var/lib/flatpak/exports/bin
+dmenu_path | dmenu "$@" | ${SHELL:-"/bin/sh"} &
+END
+
+# DISABLE FIREWALL
+systemctl stop firewalld
+systemctl disable firewalld
+
+# REMOVE UNUSED PKGS
+dnf remove firewalld \
+  volumeicon \
+  nm-applet -y

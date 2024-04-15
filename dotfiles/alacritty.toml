@@ -59,10 +59,10 @@ text                      = "CellBackground"
 term                      = "alacritty"
 
 [font]
-bold                      = { family = "JetBrains Mono", style = "Bold" }
-bold_italic               = { family = "JetBrains Mono", style = "Bold Italic" }
-italic                    = { family = "JetBrains Mono", style = "Italic" }
-normal                    = { family = "JetBrains Mono", style = "Regular" }
+bold                      = { family = "JetBrains Mono Nerd Font", style = "Bold" }
+bold_italic               = { family = "JetBrains Mono Nerd Font", style = "Bold Italic" }
+italic                    = { family = "JetBrains Mono Nerd Font", style = "Italic" }
+normal                    = { family = "JetBrains Mono Nerd Font", style = "Regular" }
 size                      = 10
 
 [scrolling]
