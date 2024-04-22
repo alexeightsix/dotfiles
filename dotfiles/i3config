@@ -13,8 +13,8 @@ floating_modifier $mod
 exec --no-startup-id dex-autostart --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id picom --config /home/alex/kickstart/dotfiles/picom.conf -b
+exec --no-startup-id feh --bg-fill /home/alex/kickstart/wallpaper.png
 
-# Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
@@ -80,12 +80,9 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
-
 bindsym $mod+r mode "resize"
-
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
-
 bindsym $mod+b focus up
 bindsym $mod+j focus left
 bindsym $mod+k focus down
@@ -125,38 +122,36 @@ set $ws4 "4: "
 set $ws5 "5"
 set $ws6 "6: "
 set $ws7 "7: "
-set $ws8 "8:♫ "
+set $ws8 "8:♫"
 set $ws9 "9"
-set $ws10 "10:" 
+set $ws10 "10"
 
+assign [class="[zZ]oom.*"] $ws7
 assign [class="TelegramDesktop"] $ws7
 assign [class="^[Tt]elegram.*"] $ws7
-assign [class="^[zZ]oom$"] $ws10
+assign [class="^[tT]eams.*"] $ws7
 
-for_window [class=Xfce4-terminal] focus
 for_window [class=(?i)firefox] focus
-for_window [class=Thunar] focus
-for_window [class=Thunderbird] focus
 for_window [class=TelegramDesktop] focus
 
 for_window [class="Zoom" instance="yad"] floating enable
 
-assign [class="^[fF]irefox$"]   $ws3
+assign [class="^[fF]irefox$"] $ws3
 assign [class="^[Tt]elegram.*"] $ws7
-assign [class="^[sS]lack$"]     $ws7
-assign [class="^[zZ]oom$"]      $ws9
+assign [class="^[sS]lack$"] $ws7
+assign [class="^[zZ]oom$"] $ws9
 
 set $darkbluetrans	#08052be6
-set $darkblue		    #08052b
-set $lightblue		  #5294e2
+set $darkblue		#08052b
+set $lightblue		#5294e2
 set $urgentred	  	#e53935
-set $white      		#ffffff
-set $black		      #000000
-set $purple		      #e345ff
-set $darkgrey		    #383c4a
-set $grey		        #b0b5bd
-set $mediumgrey		  #8b8b8b
-set $yellowbrown	  #e1b700
+set $white      	#ffffff
+set $black		#000000
+set $purple		#e345ff
+set $darkgrey		#383c4a
+set $grey		#b0b5bd
+set $mediumgrey		#8b8b8b
+set $yellowbrown	#e1b700
 
 client.focused		    	$lightblue	$darkblue	$white		$mediumgrey	$mediumgrey
 client.unfocused	    	$darkblue	$darkblue	$grey		$darkgrey	$darkgrey
@@ -170,12 +165,12 @@ bar {
     bindsym button5 nop
     bindsym button6 nop
     bindsym button7 nop		
-		status_command /usr/bin/i3status-rs /home/alex/kickstart/dotfiles/i3status.toml
-	  position bottom
-		tray_padding 0
+    status_command /usr/bin/i3status-rs /home/alex/kickstart/dotfiles/i3status.toml
+    position bottom
+    tray_padding 0
     strip_workspace_numbers yes
 
-		colors {
+    colors {
       active_workspace	 $lightblue $mediumgrey $darkgrey	$purple
       background         $darkgrey
       binding_mode       #FF5555 #FF5555 #F8F8F2
@@ -183,7 +178,7 @@ bar {
       inactive_workspace $darkgrey $darkgrey $grey $purple
       separator          $purple
       statusline         $white
-      urgent_workspace	 $urgentred $urgentred $white $purple    
+      urgent_workspace	 $urgentred $urgentred $white $purple
     }
 }
 
@@ -191,6 +186,4 @@ bindsym $mod+Shift+s exec "systemctl suspend"
 bindsym $mod+d exec --no-startup-id "dmenu_run -nf '#BBBBBB' -nb '#222222' -sb '$lightblue' -sf '#EEEEEE' -fn 'monospace-10'"
 
 for_window [class="^.*"] border pixel 0
-for_window [class="^[zZ]oom$"] floating enable 
-
-exec --no-startup-id feh --bg-fill /home/alex/kickstart/wallpaper.png
+for_window [class="^[zZ]oom$"] floating enable
