@@ -13,6 +13,7 @@ dnf upgrade -y && \
 dnf install \
   alacritty \
   arandr \
+  blueman \
   btrfs-assistant \
   chromium \
   cmake \

@@ -14,6 +14,8 @@ exec --no-startup-id dex-autostart --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id picom --config /home/alex/kickstart/dotfiles/picom.conf -b
 exec --no-startup-id feh --bg-fill /home/alex/kickstart/wallpaper.png
+exec --no-startup-id pkill nm-applet 
+exec --no-startup-id pkill blueman-applet
 
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
