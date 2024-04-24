@@ -71,7 +71,7 @@ multiplier                = 0
 
 [window]
 blur                      = true
-opacity                   = 0.9
+opacity                   = 0.97
 
 [window.padding]
 x                          = 0
