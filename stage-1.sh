@@ -100,8 +100,9 @@ git clone https://github.com/alexeightsix/nvim-config.git /home/alex/.config/nvi
 npm install -g neovim
 chown -R alex:alex /home/alex
 
-# ALACRITTY
+# ALACRITTY, LAZYDOCKER
 ln -s /home/alex/kickstart/dotfiles/alacritty.toml /home/alex/.config/alacritty.toml
+ln -s /home/alex/kickstart/dotfiles/lazydocker.yml /home/alex/.config/lazydocker/config.yml
 
 # I3
 find /home/alex/.config/i3 -delete
