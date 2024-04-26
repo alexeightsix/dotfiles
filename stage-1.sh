@@ -70,7 +70,6 @@ flatpak install flathub com.github.IsmaelMartinez.teams_for_linux -y
 flatpak install flathub com.slack.Slack -y
 flatpak install flathub com.spotify.Client -y
 flatpak install flathub md.obsidian.Obsidian -y
-flatpak install flathub org.telegram.desktop -y
 
 ## ZOOM
 wget https://zoom.us/client/5.17.11.3835/zoom_x86_64.rpm && \
