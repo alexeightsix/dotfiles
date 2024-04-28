@@ -15,7 +15,6 @@ dnf install \
   arandr \
   blueman \
   btrfs-assistant \
-  chromium \
   cmake \
   cronie \
   cronie-anacron \
@@ -57,6 +56,7 @@ dnf install \
   rsync \
   snapper \
   tmux \
+  tmpwatch \
   virt-manager \
   vlc \
   xclip \
@@ -67,6 +67,7 @@ dnf install \
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 flatpak install flathub com.discordapp.Discord -y
 flatpak install flathub com.github.IsmaelMartinez.teams_for_linux -y
+flatpak install flathub com.google.Chrome
 flatpak install flathub com.slack.Slack -y
 flatpak install flathub com.spotify.Client -y
 flatpak install flathub md.obsidian.Obsidian -y
@@ -90,6 +91,9 @@ usermod -aG docker alex
 ## SYSTEMD
 systemctl enable --now crond.service
 systemctl enable --now sshd 
+
+## CLEAR TMP
+## */5 * * * /usr/sbin/tmpwatch -am 12 /tmp
 
 ## NEOVIM
 find /home/alex/.config/nvim -delete
