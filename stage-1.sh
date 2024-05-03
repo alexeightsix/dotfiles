@@ -140,3 +140,7 @@ systemctl disable firewalld
 dnf remove firewalld
 
 ln -s /usr/bin/pavucontrol /usr/bin/sound
+
+# EXEC
+chmod +x /home/alex/kickstart/scripts/backup.sh
+chmod +x /home/alex/kickstart/scripts/xrandr.sh

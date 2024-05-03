@@ -1,3 +1,4 @@
+pkill rsync
 umount /dev/sda1 
 mount /dev/sda1 /run/media/alex/Timeshift
 

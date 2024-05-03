@@ -7,6 +7,7 @@ alias lg=lazygit
 alias vi=nvim --clean
 alias vim=nvim
 alias lw='lazyworktree'
+alias rs="docker compose down && docker compose up"
 
 export DISABLE_AUTO_UPDATE=true 
 export DISABLE_UPDATE_PROMPT=true
