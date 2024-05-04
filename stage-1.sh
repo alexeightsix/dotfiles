@@ -144,3 +144,6 @@ ln -s /usr/bin/pavucontrol /usr/bin/sound
 # EXEC
 chmod +x /home/alex/kickstart/scripts/backup.sh
 chmod +x /home/alex/kickstart/scripts/xrandr.sh
+
+# ALLOW VIA SOFTWARE
+chmod a+rw /dev/hidraw3
