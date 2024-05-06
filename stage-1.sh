@@ -42,7 +42,7 @@ dnf install \
   libvirt \
   make \
   ncdu \
-  neofetch \
+  fastfetch \
   neovim-0.9.5-4.fc40 \
   nmap \
   nodejs \
