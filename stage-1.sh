@@ -19,6 +19,7 @@ dnf install \
   cronie \
   cronie-anacron \
   dnf-plugins-core \
+  fastfetch \
   fd-find \
   feh \
   filezilla \
@@ -38,11 +39,10 @@ dnf install \
   jq \
   lazydocker \
   lazygit \
-  lua \
   libvirt \
+  lua \
   make \
   ncdu \
-  fastfetch \
   neovim-0.9.5-4.fc40 \
   nmap \
   nodejs \
@@ -55,8 +55,9 @@ dnf install \
   rofi \
   rsync \
   snapper \
-  tmux \
+  telnet-server \
   tmpwatch \
+  tmux \
   virt-manager \
   vlc \
   xclip \
