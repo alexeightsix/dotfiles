@@ -1,5 +1,6 @@
 pkill rsync
 umount /dev/sda1 
+mkdir -p /run/media/alex/Timeshift
 mount /dev/sda1 /run/media/alex/Timeshift
 
 rsync -avh -W --delete --progress \

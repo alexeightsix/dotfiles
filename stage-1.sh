@@ -55,7 +55,7 @@ dnf install \
   rofi \
   rsync \
   snapper \
-  telnet-server \
+  telnet \
   tmpwatch \
   tmux \
   virt-manager \
