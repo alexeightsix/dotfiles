@@ -42,6 +42,7 @@ dnf install \
   libvirt \
   lua \
   make \
+  mariadb \
   ncdu \
   neovim-0.9.5-4.fc40 \
   nmap \
