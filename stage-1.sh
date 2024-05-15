@@ -69,10 +69,11 @@ dnf install \
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 flatpak install flathub com.discordapp.Discord -y
 flatpak install flathub com.github.IsmaelMartinez.teams_for_linux -y
-flatpak install flathub com.google.Chrome
+flatpak install flathub com.google.Chrome -y
 flatpak install flathub com.slack.Slack -y
 flatpak install flathub com.spotify.Client -y
 flatpak install flathub md.obsidian.Obsidian -y
+flatpak install flathub com.getpostman.Postman -y
 
 ## ZOOM
 wget https://zoom.us/client/5.17.11.3835/zoom_x86_64.rpm && \
