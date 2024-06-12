@@ -62,6 +62,7 @@ dnf install \
   virt-manager \
   vlc \
   xclip \
+  xfce4-power-manager \
   zoxide \
   zsh -y && \
 
