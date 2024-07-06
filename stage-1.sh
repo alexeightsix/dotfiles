@@ -1,15 +1,17 @@
-dnf copr enable @go-sig/golang-rawhide -y
-dnf copr enable atim/i3status-rust -y
-dnf copr enable atim/lazydocker -y
-dnf copr enable atim/lazygit -y
-dnf copr enable atim/zoxide  -y
-dnf copr enable maveonair/jetbrains-mono-nerd-fonts -y
+dnf copr enable @go-sig/golang-rawhide -y && \
+dnf copr enable atim/i3status-rust -y && \
+dnf copr enable atim/lazydocker -y && \
+dnf copr enable atim/lazygit -y && \
+dnf copr enable atim/zoxide  -y && \
 
-dnf install -y https://rpms.remirepo.net/fedora/remi-release-$(cut -d ' ' -f 3 /etc/fedora-release).rpm
-dnf config-manager -y --set-enabled remi
+dnf install -y https://rpms.remirepo.net/fedora/remi-release-$(cut -d ' ' -f 3 /etc/fedora-release).rpm && \
+dnf config-manager -y --set-enabled remi && \
+
+wget -P /tmp/fonts https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/JetBrainsMono.zip && \
+unzip /tmp/fonts/JetBrainsMono.zip -d /usr/local/share/fonts/jetbrainsmono/ && \
+rm -rf /tmp/fonts/
 
 dnf update && \
-dnf upgrade -y && \
 dnf install \
   alacritty \
   arandr \
@@ -35,8 +37,6 @@ dnf install \
   gparted \
   gpick \
   i3status-rust \
-  jetbrains-mono-nerd-fonts  \
-  jetbrains-mononl-nerd-fonts \
   jq \
   lazydocker \
   lazygit \
@@ -45,7 +45,7 @@ dnf install \
   make \
   mariadb \
   ncdu \
-  neovim-0.9.5-4.fc40 \
+  neovim-0.10.0-5.fc40 \
   nmap \
   nodejs \
   php83 \
@@ -68,7 +68,7 @@ dnf install \
   zsh -y && \
 
 ## FLATPAKS
-flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo && \
 flatpak install flathub com.discordapp.Discord -y
 flatpak install flathub com.github.IsmaelMartinez.teams_for_linux -y
 flatpak install flathub com.slack.Slack -y
