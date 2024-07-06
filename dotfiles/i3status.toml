@@ -15,8 +15,8 @@ critical_cpu = 90
 [[block]]
 block = "temperature"
 
-[[block]]
-block = "battery"
+# [[block]]
+# block = "battery"
 
 [[block]]
 block = "memory"

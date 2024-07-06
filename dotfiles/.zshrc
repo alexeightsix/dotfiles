@@ -22,3 +22,5 @@ source $ZSH/oh-my-zsh.sh
 
 eval "$(atuin init zsh --disable-up-arrow)"
 eval "$(zoxide init zsh)"
+
+. "$HOME/.atuin/bin/env"
