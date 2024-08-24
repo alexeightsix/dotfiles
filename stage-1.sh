@@ -7,9 +7,6 @@ dnf copr enable atim/zoxide  -y && \
 dnf install -y https://rpms.remirepo.net/fedora/remi-release-$(cut -d ' ' -f 3 /etc/fedora-release).rpm && \
 dnf config-manager -y --set-enabled remi && \
 
-wget -P /tmp/fonts https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/JetBrainsMono.zip && \
-unzip /tmp/fonts/JetBrainsMono.zip -d /usr/local/share/fonts/jetbrainsmono/ && \
-rm -rf /tmp/fonts/
 
 dnf update && \
 dnf install \
@@ -45,7 +42,7 @@ dnf install \
   make \
   mariadb \
   ncdu \
-  neovim-0.10.0-5.fc40 \
+  neovim \
   nmap \
   nodejs \
   php83 \
@@ -72,7 +69,6 @@ flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.f
 flatpak install flathub com.discordapp.Discord -y
 flatpak install flathub com.github.IsmaelMartinez.teams_for_linux -y
 flatpak install flathub com.slack.Slack -y
-flatpak install flathub com.spotify.Client -y
 flatpak install flathub md.obsidian.Obsidian -y
 flatpak install flathub com.getpostman.Postman -y
 flatpak install flathub com.transmissionbt.Transmission -y
@@ -130,7 +126,6 @@ blacklist snd_pcsp
 END
 
 # ADD FLATPAKS TO DMENU
-echo "" > /usr/bin/dmenu_run && \
 tee /usr/bin/dmenu_run << END
 #!/usr/bin/sh
 export PATH=$PATH:/var/lib/flatpak/exports/bin

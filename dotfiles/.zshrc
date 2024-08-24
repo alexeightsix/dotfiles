@@ -16,7 +16,7 @@ export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_TMUX_AUTOSTART=false
 ZSH_THEME="dracula"
-plugins=(git docker-compose colorize fd fzf tmux zoxide)
+plugins=(git docker-compose colorize fzf tmux zoxide)
 
 source $ZSH/oh-my-zsh.sh
 

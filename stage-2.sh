@@ -23,11 +23,26 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 # ATUIN
 bash <(curl --proto '=https' --tlsv1.2 -sSf https://setup.atuin.sh)
-ln -s /home/alex/kickstart/dotfiles/atuin.toml /home/alex/.config/atuin/config.toml'
+ln -s /home/alex/kickstart/dotfiles/atuin.toml /home/alex/.config/atuin/config.toml
 
-## TODO
-## TURN OFF RGB
-## Cargo install -> https://lib.rs/crates/fury-renegade-rgb
-## AS ROOT ->
-## ./fury-renegade-rgb -b /dev/i2c-7 -2 brightness --value 0
-## ./fury-renegade-rgb -b /dev/i2c-7 -4 brightness --value 0
+# TURN OFF RGB
+cargo install fury-renegade-rgb 
+sudo groupadd -q i2c
+sudo usermod -a -G i2c alex
+sudo tee /etc/systemd/system/rgb.service << END
+[Unit]
+Description=Disable RGB
+
+[Service]
+ExecStart=/home/alex/.cargo/bin/fury-renegade-rgb -b /dev/i2c-7 -2 -4 brightness --value 0
+
+[Install]
+WantedBy=multi-user.target
+END
+sudo chmod a+x /home/alex/.cargo/bin/fury-renegade-rgb
+systemctl enable rgb.service
+
+# JB Mono
+wget -P /tmp/fonts https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/JetBrainsMono.zip && \
+unzip /tmp/fonts/JetBrainsMono.zip -d /.local/share/fonts/jetbrainsmono/ && \
+rm -rf /tmp/fonts/
