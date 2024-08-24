@@ -23,4 +23,11 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 # ATUIN
 bash <(curl --proto '=https' --tlsv1.2 -sSf https://setup.atuin.sh)
-ln -s /home/alex/kickstart/dotfiles/atuin.toml /home/alex/.config/atuin/config.toml
+ln -s /home/alex/kickstart/dotfiles/atuin.toml /home/alex/.config/atuin/config.toml'
+
+## TODO
+## TURN OFF RGB
+## Cargo install -> https://lib.rs/crates/fury-renegade-rgb
+## AS ROOT ->
+## ./fury-renegade-rgb -b /dev/i2c-7 -2 brightness --value 0
+## ./fury-renegade-rgb -b /dev/i2c-7 -4 brightness --value 0
