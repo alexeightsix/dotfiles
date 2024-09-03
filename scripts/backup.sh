@@ -7,6 +7,7 @@ rsync -avh -W --delete --progress \
   --exclude='/dev/*' \
   --exclude='.qcow2' \
   --exclude='/home/alex/.cache/*' \
+  --exclude='/var/tmp/*' \
   --exclude='/proc/*' \
   --exclude='/sys/*' \
   --exclude='/tmp/*' \
