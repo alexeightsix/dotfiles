@@ -1,10 +1,10 @@
 ## FLATPAKS
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo && \
 flatpak install flathub com.discordapp.Discord -y
-flatpak install flathub com.github.IsmaelMartinez.teams_for_linux -y
 flatpak install flathub com.slack.Slack -y
 flatpak install flathub md.obsidian.Obsidian -y
-flatpak install flathub com.getpostman.Postman -y
+## FIX ME: Download manually and symlink
+## flatpak install flathub com.getpostman.Postman -y
 flatpak install flathub com.transmissionbt.Transmission -y
 flatpak install flathub hu.irl.cameractrls -y
 
@@ -51,6 +51,9 @@ WantedBy=multi-user.target
 END
 sudo chmod a+x /home/alex/.cargo/bin/fury-renegade-rgb
 systemctl enable rgb.service
+
+## FIX ME:
+## install bt-mgr
 
 # JB Mono
 wget -P /tmp/fonts https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/JetBrainsMono.zip && \
