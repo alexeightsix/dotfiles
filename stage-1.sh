@@ -45,8 +45,10 @@ dnf install \
   neovim \
   nmap \
   nodejs \
-  php83 \
-  php83-syspaths \
+  ## FIX ME: https://chatgpt.com/c/6754c07f-b8d0-800e-ab4a-69f1be536d83
+  ## install PHP using REMI 
+  ## php83 \
+  ## php83-syspaths \
   picom \
   python3 \
   qemu \
