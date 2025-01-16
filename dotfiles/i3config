@@ -75,12 +75,12 @@ bindcode $mod+Shift+81 	 move container to workspace  $ws9
 bindcode $mod+Shift+90 	 move container to workspace  $ws10
 
 mode "resize" {
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
 }
 
 bindsym $mod+r mode "resize"
@@ -162,6 +162,10 @@ client.focused_inactive		$darkblue	$darkblue	$grey		$black		$black
 client.urgent		    	$urgentred	$urgentred	$white		$yellowbrown	$yellowbrown
 
 bar {
+    mode hide
+    hidden_state hide
+    modifier $mod
+
     padding 0 0 0 0
     bindsym button1 nop
     bindsym button4 nop
@@ -185,7 +189,7 @@ bar {
     }
 }
 
-bindsym $mod+Shift+s exec "systemctl suspend"
+bindsym $mod+Shift+s exec "systemctl disable bluetooth && systemctl suspend"
 bindsym $mod+d exec --no-startup-id "dmenu_run -nf '#BBBBBB' -nb '#222222' -sb '$lightblue' -sf '#EEEEEE' -fn 'monospace-10'"
 
 for_window [class="^.*"] border pixel 0
