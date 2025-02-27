@@ -9,6 +9,8 @@
 ##  "settingsVersion": "2.1.2"
 ## }
 
+## SQL
+## https://www.beekeeperstudio.io/get
 
 ## FLATPAKS
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo && \
