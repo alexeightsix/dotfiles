@@ -52,6 +52,7 @@ dnf install \
   #php83 \
   #php83-syspaths \
   postgresql \
+  luarocks \
   picom \
   python3 \
   qemu \
