@@ -51,6 +51,7 @@ dnf install \
   ## php83-syspaths \
   #php83 \
   #php83-syspaths \
+  luarocks \ 
   postgresql \
   luarocks \
   picom \

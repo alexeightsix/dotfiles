@@ -15,7 +15,14 @@
 ## FLATPAKS
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo && \
 flatpak install flathub com.discordapp.Discord -y
-flatpak install flathub com.slack.Slack -y
+# flatpak install flathub com.slack.Slack -y
+## SLACK
+cd /tmp
+wget https://downloads.slack-edge.com/desktop-releases/linux/x64/4.41.105/slack-4.41.105-0.1.el8.x86_64.rpm
+sudo dnf install slack-4.41.105-0.1.el8.x86_64.rpm -y
+rm -rf /tmp/slack-4.41.105-0.1.el8.x86_64.rpm
+
+
 flatpak install flathub md.obsidian.Obsidian -y
 ## FIX ME: Download manually and symlink
 ## flatpak install flathub com.getpostman.Postman -y
