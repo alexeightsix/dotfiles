@@ -1,11 +1,9 @@
-alias air="/home/alex/go/bin/air"
 alias dnf='sudo snapper -c root create --description before-dnf && sudo dnf'
 alias gs='git status'
 alias ld='lazydocker'
 alias lg='lazygit'
 alias vi='nvim --clean'
 alias vim='nvim'
-
 
 export DISABLE_AUTO_UPDATE=true 
 export DISABLE_UPDATE_PROMPT=true
