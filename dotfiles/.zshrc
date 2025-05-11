@@ -12,12 +12,11 @@ export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_TMUX_AUTOSTART=false
 ZSH_THEME="dracula"
-plugins=(docker-compose colorize fzf tmux zoxide)
+plugins=(docker-compose colorize fzf tmux)
 
 source $ZSH/oh-my-zsh.sh
 
 eval "$(atuin init zsh --disable-up-arrow)"
-eval "$(zoxide init zsh)"
 
 . "$HOME/.atuin/bin/env"
 
@@ -26,3 +25,4 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  
 
 export PATH=$PATH:/home/alex/go/bin
+eval "$(zoxide init zsh)"

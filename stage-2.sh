@@ -1,39 +1,29 @@
-##
-##To persist this behavior, edit ~/.Xmodmap and add
-##pointer = 1 25 3 4 5 6 7 8 9
+if [[ $EUID -eq 0 ]]; then
+    echo "Running as root"
+    exit o2
+fi
 
-## vimium-options.json chrome extension
-## {
-##  "keyMappings": "unmap f",
-##  "linkHintCharacters": "",
-##  "settingsVersion": "2.1.2"
-## }
-
-## SQL
-## https://www.beekeeperstudio.io/get
+## BEEKEEPER STUDIO
+cd /tmp
+curl -o /etc/yum.repos.d/beekeeper-studio.repo https://rpm.beekeeperstudio.io/beekeeper-studio.repo
+sudo rpm --import https://rpm.beekeeperstudio.io/beekeeper.key
+sudo dnf install beekeeper-studio
 
 ## FLATPAKS
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo && \
 flatpak install flathub com.discordapp.Discord -y
-# flatpak install flathub com.slack.Slack -y
-## SLACK
-cd /tmp
-wget https://downloads.slack-edge.com/desktop-releases/linux/x64/4.41.105/slack-4.41.105-0.1.el8.x86_64.rpm
-sudo dnf install slack-4.41.105-0.1.el8.x86_64.rpm -y
-rm -rf /tmp/slack-4.41.105-0.1.el8.x86_64.rpm
-
-
 flatpak install flathub md.obsidian.Obsidian -y
-## FIX ME: Download manually and symlink
-## flatpak install flathub com.getpostman.Postman -y
+flatpak install flathub com.getpostman.Postman -y
 flatpak install flathub com.transmissionbt.Transmission -y
 flatpak install flathub hu.irl.cameractrls -y
 
 # ZSH
+sudo dnf install zsh -y
 find /home/alex/.oh-my-zsh -delete
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 find ~/.zshrc -delete
 ln -s /home/alex/kickstart/dotfiles/.zshrc /home/alex/.zshrc
+ln -s /home/alex/kickstart/dotfiles/.gitconfig /home/alex/.gitconfig
 
 # DRACULA
 find /tmp/dracula -delete
@@ -58,8 +48,9 @@ ln -s /home/alex/kickstart/dotfiles/atuin.toml /home/alex/.config/atuin/config.t
 
 # TURN OFF RGB
 cargo install fury-renegade-rgb 
-sudo groupadd -q i2c
-sudo usermod -a -G i2c alex
+sudo groupadd i2c
+sudo usermod -aG i2c alex
+sudo touch /etc/systemd/system/rgb.service
 sudo tee /etc/systemd/system/rgb.service << END
 [Unit]
 Description=Disable RGB
@@ -72,11 +63,3 @@ WantedBy=multi-user.target
 END
 sudo chmod a+x /home/alex/.cargo/bin/fury-renegade-rgb
 systemctl enable rgb.service
-
-## FIX ME:
-## install bt-mgr
-
-# JB Mono
-wget -P /tmp/fonts https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/JetBrainsMono.zip && \
-unzip /tmp/fonts/JetBrainsMono.zip -d /.local/share/fonts/jetbrainsmono/ && \
-rm -rf /tmp/fonts/
