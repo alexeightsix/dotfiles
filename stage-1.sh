@@ -3,6 +3,7 @@ if [[ $(/usr/bin/id -u) -ne 0 ]]; then
     exit
 fi
 
+dnf install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release && \
 dnf copr enable @go-sig/golang-rawhide -y && \
 dnf copr enable atim/i3status-rust -y && \
 dnf copr enable atim/lazydocker -y && \
@@ -59,6 +60,7 @@ dnf install \
   snapper \
   telnet \
   tmux \
+  piper \
   virt-manager \
   vlc \
   xclip \

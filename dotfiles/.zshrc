@@ -4,6 +4,7 @@ alias ld='lazydocker'
 alias lg='lazygit'
 alias vi='nvim --clean'
 alias vim='nvim'
+alias untar="tar -xvzf"
 
 export DISABLE_AUTO_UPDATE=true 
 export DISABLE_UPDATE_PROMPT=true
@@ -24,5 +25,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  
 
-export PATH=$PATH:/home/alex/go/bin
+
+export PATH="$HOME/.local/bin:$HOME/go/bin:$PATH"
 eval "$(zoxide init zsh)"
