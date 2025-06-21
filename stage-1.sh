@@ -61,6 +61,7 @@ dnf install \
   telnet \
   tmux \
   piper \
+  rclone \
   virt-manager \
   vlc \
   xclip \
