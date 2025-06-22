@@ -65,7 +65,11 @@ dnf install \
   virt-manager \
   vlc \
   xclip \
-  xfce4-power-manager \
+  xfce4power-manager \
+  SDL2-image-devel \
+  SDL2-mixer-devel \
+  SDL2-ttf-devel \
+  SDL2-gfx-devel \
   zoxide \
   zsh
 
