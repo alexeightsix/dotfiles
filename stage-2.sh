@@ -12,10 +12,16 @@ sudo dnf install beekeeper-studio
 ## FLATPAKS
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo && \
 flatpak install flathub com.discordapp.Discord -y
-flatpak install flathub md.obsidian.Obsidian -y
 flatpak install flathub com.getpostman.Postman -y
 flatpak install flathub com.transmissionbt.Transmission -y
 flatpak install flathub hu.irl.cameractrls -y
+flatpak install flathub md.obsidian.Obsidian -y
+
+sudo ln -s /var/lib/flatpak/exports/bin/com.discordapp.Discord /usr/bin/discord
+sudo ln -s /var/lib/flatpak/exports/bin/com.getpostman.Postman /usr/bin/postman 
+sudo ln -s /var/lib/flatpak/exports/bin/com.transmissionbt.Transmission /usr/bin/transmission
+sudo ln -s /var/lib/flatpak/exports/bin/hu.irl.cameractrls /usr/bin/cameractrls
+sudo ln -s /var/lib/flatpak/exports/bin/md.obsidian.Obsidian /usr/bin/obsidian
 
 # ZSH
 sudo dnf install zsh -y

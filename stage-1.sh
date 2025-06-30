@@ -71,9 +71,12 @@ dnf install \
   SDL2-ttf-devel \
   SDL2-gfx-devel \
   zoxide \
-  zsh
-
-which git || exit 1
+  zsh \
+  zig \
+  gtk4-devel \
+  libadwaita-devel \
+  blueprint-compiler \
+  gettext
 
 ## SYSTEMD
 systemctl enable --now crond.service

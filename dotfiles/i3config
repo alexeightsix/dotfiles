@@ -133,6 +133,7 @@ assign [class="[zZ]oom.*"] $ws7
 assign [class="TelegramDesktop"] $ws7
 assign [class="^[Tt]elegram.*"] $ws7
 assign [class="^[tT]eams.*"] $ws7
+assign [class="^[sS]lack.*"] $ws7
 
 for_window [class=(?i)firefox] focus
 for_window [class=TelegramDesktop] focus
@@ -189,7 +190,7 @@ bar {
     }
 }
 
-bindsym $mod+Shift+s exec "systemctl disable bluetooth && systemctl suspend"
+bindsym $mod+Shift+s exec --no-startup-id "systemctl suspend"
 bindsym $mod+d exec --no-startup-id "dmenu_run -nf '#BBBBBB' -nb '#222222' -sb '$lightblue' -sf '#EEEEEE' -fn 'monospace-10'"
 
 for_window [class="^.*"] border pixel 0
