@@ -57,6 +57,7 @@ dnf install \
   ripgrep \
   rofi \
   rsync \
+  ruby-devel \
   snapper \
   telnet \
   tmux \
