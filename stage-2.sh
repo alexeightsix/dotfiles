@@ -1,71 +1,40 @@
-if [[ $EUID -eq 0 ]]; then
-    echo "Running as root"
-    exit o2
+if [[ $(/usr/bin/id -u) -ne 0 ]]; then
+    echo "Not running as root"
+    exit
 fi
 
-## BEEKEEPER STUDIO
-cd /tmp
-curl -o /etc/yum.repos.d/beekeeper-studio.repo https://rpm.beekeeperstudio.io/beekeeper-studio.repo
-sudo rpm --import https://rpm.beekeeperstudio.io/beekeeper.key
-sudo dnf install beekeeper-studio
+## SYSTEMD
+systemctl enable --now crond.service
+systemctl enable --now sshd 
 
-## FLATPAKS
-flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo && \
-flatpak install flathub com.discordapp.Discord -y
-flatpak install flathub com.getpostman.Postman -y
-flatpak install flathub com.transmissionbt.Transmission -y
-flatpak install flathub hu.irl.cameractrls -y
-flatpak install flathub md.obsidian.Obsidian -y
-
-sudo ln -s /var/lib/flatpak/exports/bin/com.discordapp.Discord /usr/bin/discord
-sudo ln -s /var/lib/flatpak/exports/bin/com.getpostman.Postman /usr/bin/postman 
-sudo ln -s /var/lib/flatpak/exports/bin/com.transmissionbt.Transmission /usr/bin/transmission
-sudo ln -s /var/lib/flatpak/exports/bin/hu.irl.cameractrls /usr/bin/cameractrls
-sudo ln -s /var/lib/flatpak/exports/bin/md.obsidian.Obsidian /usr/bin/obsidian
-
-# ZSH
-sudo dnf install zsh -y
-find /home/alex/.oh-my-zsh -delete
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-find ~/.zshrc -delete
-ln -s /home/alex/kickstart/dotfiles/.zshrc /home/alex/.zshrc
-ln -s /home/alex/kickstart/dotfiles/.gitconfig /home/alex/.gitconfig
-
-# DRACULA
-find /tmp/dracula -delete
-git clone https://github.com/dracula/zsh.git /tmp/dracula
-cp /tmp/dracula/dracula.zsh-theme /home/alex/.oh-my-zsh/themes/dracula.zsh-theme
-cp -rf /tmp/dracula/lib/ /home/alex/.oh-my-zsh/themes
-
-# TMUX
-# PRESS PREFIX + I 
-# TO FETCH PLUGINS
-find ~/.tmux/plugins -delete
-ln -s /home/alex/kickstart/dotfiles/tmux.conf /home/alex/.tmux.conf
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-tmux && tmux source-file /home/alex/.tmux.conf
-
-# RUST UP
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-
-# ATUIN
-bash <(curl --proto '=https' --tlsv1.2 -sSf https://setup.atuin.sh)
-ln -s /home/alex/kickstart/dotfiles/atuin.toml /home/alex/.config/atuin/config.toml
-
-# TURN OFF RGB
-cargo install fury-renegade-rgb 
-sudo groupadd i2c
-sudo usermod -aG i2c alex
-sudo touch /etc/systemd/system/rgb.service
-sudo tee /etc/systemd/system/rgb.service << END
-[Unit]
-Description=Disable RGB
-
-[Service]
-ExecStart=/home/alex/.cargo/bin/fury-renegade-rgb -b /dev/i2c-7 -2 -4 brightness --value 0
-
-[Install]
-WantedBy=multi-user.target
+# DISABLE SPEAKER
+touch /etc/modprobe.d/nobeep.conf && \
+tee /etc/modprobe.d/nobeep.conf << END
+blacklist pcspkr
+blacklist snd_pcsp
 END
-sudo chmod a+x /home/alex/.cargo/bin/fury-renegade-rgb
-systemctl enable rgb.service
+
+# DOCKER
+dnf -y install dnf-plugins-core && \
+dnf-3 config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo && \
+dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin && \
+systemctl enable docker && \
+systemctl start docker && \
+usermod -aG docker alex
+
+# JETBRAINS MONO FONT
+mkdir -p /usr/local/share/fonts/jetbrainsmono/
+wget -P /tmp/fonts https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/JetBrainsMono.zip && \
+unzip /tmp/fonts/JetBrainsMono.zip -d /usr/local/share/fonts/jetbrainsmono/ && \
+rm -rf /tmp/fonts/
+
+# PHP
+dnf install https://rpms.remirepo.net/fedora/remi-release-42.rpm && \
+dnf module enable php:remi-8.4 && \
+dnf install php php-cli && \
+curl -sS https://getcomposer.org/installer | php && \
+mv composer.phar /usr/local/bin/composer && \
+chmod +x /usr/local/bin/composer
+
+# DMENU SOUND ALIAS
+ln -s /usr/bin/pavucontrol /usr/bin/sound

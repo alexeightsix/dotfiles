@@ -140,6 +140,9 @@ for_window [class=TelegramDesktop] focus
 
 for_window [class="Zoom" instance="yad"] floating enable
 
+for_window [class="^.*"] border pixel 0
+for_window [class="^[zZ]oom$"] floating enable
+
 assign [class="^[fF]irefox$"] $ws3
 assign [class="^[Tt]elegram.*"] $ws7
 assign [class="^[sS]lack$"] $ws7
@@ -192,6 +195,3 @@ bar {
 
 bindsym $mod+Shift+s exec --no-startup-id "systemctl suspend"
 bindsym $mod+d exec --no-startup-id "dmenu_run -nf '#BBBBBB' -nb '#222222' -sb '$lightblue' -sf '#EEEEEE' -fn 'monospace-10'"
-
-for_window [class="^.*"] border pixel 0
-for_window [class="^[zZ]oom$"] floating enable

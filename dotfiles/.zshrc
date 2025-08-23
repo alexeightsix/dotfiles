@@ -26,5 +26,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  
 
 
-export PATH="$HOME/.local/bin:$HOME/go/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/go/bin:$PATH:$HOME/GoLand-2025.2/bin/"
 eval "$(zoxide init zsh)"
+
+# opencode
+export PATH=/home/alex/.opencode/bin:$PATH
