@@ -3,8 +3,9 @@ if [[ $EUID -eq 0 ]]; then
     exit o2
 fi
 
-# ALACRITTY
-ln -s /home/alex/kickstart/dotfiles/alacritty.toml /home/alex/.config/alacritty.toml
+# GHOSTTY
+mkdir -p /home/alex/.config/ghostty
+ln -s /home/alex/kickstart/dotfiles/ghostty /home/alex/.config/ghostty/config
 
 # LAZYDOCKER
 mkdir -p /home/alex/.config/lazydocker && \

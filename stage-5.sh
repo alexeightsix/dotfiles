@@ -13,7 +13,7 @@ sudo tee /etc/systemd/system/rgb.service << END
 Description=Disable RGB
 
 [Service]
-ExecStart=/home/alex/.cargo/bin/fury-renegade-rgb -b /dev/i2c-7 -2 -4 brightness --value 0
+ExecStart=/home/alex/.cargo/bin/fury-renegade-rgb -b /dev/i2c-10 -2 -4 brightness --value 0
 
 [Install]
 WantedBy=multi-user.target

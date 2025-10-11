@@ -8,14 +8,15 @@ dnf copr enable @go-sig/golang-rawhide -y && \
 dnf copr enable atim/i3status-rust -y && \
 dnf copr enable atim/lazydocker -y && \
 dnf copr enable atim/lazygit -y && \
+dnf copr enable pgdev/ghostty && \
 
 dnf update && \
 dnf install \
-  alacritty \
   arandr \
   blueman \
   bluez \
   bluez-tools \
+  btop \
   btrfs-assistant \
   chromium \
   cmake \
