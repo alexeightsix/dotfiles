@@ -138,7 +138,7 @@ assign [class="^[sS]lack.*"] $ws7
 for_window [class=(?i)firefox] focus
 for_window [class=TelegramDesktop] focus
 
-for_window [class="Zoom" instance="yad"] floating enable
+# for_window [class="Zoom" instance="yad"] floating enable
 
 for_window [class="^.*"] border pixel 0
 for_window [class="^[zZ]oom$"] floating enable
