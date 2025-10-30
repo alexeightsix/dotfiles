@@ -32,4 +32,4 @@ selection-background = #44475a
 selection-foreground = #f8f8f2
 window-decoration = false
 window-padding-x = 0
-window-padding-y = 0
+window-padding-y = 1

@@ -1,22 +1,24 @@
-if [[ $(/usr/bin/id -u) -ne 0 ]]; then
-    echo "Not running as root"
-    exit
-fi
+# ZSH
+find /home/alex/.oh-my-zsh -delete
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+find ~/.zshrc -delete
+ln -s /home/alex/kickstart/dotfiles/.zshrc /home/alex/.zshrc
+ln -s /home/alex/kickstart/dotfiles/.gitconfig /home/alex/.gitconfig
 
-# TURN OFF RGB
-cargo install fury-renegade-rgb 
-sudo groupadd i2c
-sudo usermod -aG i2c alex
-sudo touch /etc/systemd/system/rgb.service
-sudo tee /etc/systemd/system/rgb.service << END
-[Unit]
-Description=Disable RGB
+# DRACULA
+find /tmp/dracula -delete
+git clone https://github.com/dracula/zsh.git /tmp/dracula
+cp /tmp/dracula/dracula.zsh-theme /home/alex/.oh-my-zsh/themes/dracula.zsh-theme
+cp -rf /tmp/dracula/lib/ /home/alex/.oh-my-zsh/themes
 
-[Service]
-ExecStart=/home/alex/.cargo/bin/fury-renegade-rgb -b /dev/i2c-10 -2 -4 brightness --value 0
+# TMUX
+# PRESS PREFIX + I 
+# TO FETCH PLUGINS
+find ~/.tmux/plugins -delete
+ln -s /home/alex/kickstart/dotfiles/tmux.conf /home/alex/.tmux.conf
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+tmux && tmux source-file /home/alex/.tmux.conf
 
-[Install]
-WantedBy=multi-user.target
-END
-sudo chmod a+x /home/alex/.cargo/bin/fury-renegade-rgb
-systemctl enable rgb.service
+# ATUIN
+bash <(curl --proto '=https' --tlsv1.2 -sSf https://setup.atuin.sh)
+ln -s /home/alex/kickstart/dotfiles/atuin.toml /home/alex/.config/atuin/config.toml

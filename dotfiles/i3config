@@ -13,7 +13,7 @@ floating_modifier $mod
 exec --no-startup-id dex-autostart --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id picom --config /home/alex/kickstart/dotfiles/picom.conf -b
-exec --no-startup-id feh --bg-fill /home/alex/kickstart/wallpaper.png
+exec --no-startup-id feh --bg-fill /home/alex/kickstart/wallpaper-2.png
 exec --no-startup-id pkill nm-applet 
 exec --no-startup-id pkill blueman-applet
 exec --no-startup-id /home/alex/kickstart/scripts/xrandr.sh
@@ -138,7 +138,7 @@ assign [class="^[sS]lack.*"] $ws7
 for_window [class=(?i)firefox] focus
 for_window [class=TelegramDesktop] focus
 
-for_window [class="Zoom" instance="yad"] floating enable
+# for_window [class="Zoom" instance="yad"] floating enable
 
 for_window [class="^.*"] border pixel 0
 for_window [class="^[zZ]oom$"] floating enable

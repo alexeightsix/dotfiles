@@ -3,14 +3,15 @@ if [[ $(/usr/bin/id -u) -ne 0 ]]; then
     exit
 fi
 
-dnf install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release && \
+dnf install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release
 dnf copr enable @go-sig/golang-rawhide -y && \
 dnf copr enable atim/i3status-rust -y && \
 dnf copr enable atim/lazydocker -y && \
 dnf copr enable atim/lazygit -y && \
 dnf copr enable pgdev/ghostty && \
 
-dnf update && \
+dnf update
+
 dnf install \
   arandr \
   blueman \
@@ -38,6 +39,7 @@ dnf install \
   golang \
   gparted \
   gpick \
+  ghostty \
   i3status-rust \
   jq \
   lazydocker \
@@ -67,11 +69,13 @@ dnf install \
   virt-manager \
   vlc \
   xclip \
-  xfce4power-manager \
   zoxide \
   zsh \
   zig \
   gtk4-devel \
   libadwaita-devel \
   blueprint-compiler \
-  gettext
+  gettext \
+  xfce4-power-manager
+
+dnf remove ghostscript

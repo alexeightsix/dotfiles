@@ -4,7 +4,7 @@ mkdir -p /run/media/alex/Timeshift
 mount /dev/sda1 /run/media/alex/Timeshift
 
 rsync -avh -W --delete --progress \
-  --exclude='/nix/*' \ 
+  --exclude='/nix/*' \
   --exclude='/dev/*' \
   --exclude='.qcow2' \
   --exclude='/home/alex/.cache/*' \
