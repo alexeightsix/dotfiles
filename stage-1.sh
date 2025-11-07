@@ -33,6 +33,7 @@ dnf install \
   fzf \
   gimp \
   git \
+  gh \
   git-delta \
   gnome-tweaks \
   golang \
