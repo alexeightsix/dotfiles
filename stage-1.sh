@@ -19,7 +19,6 @@ dnf install \
   bluez-tools \
   btop \
   btrfs-assistant \
-  chromium \
   cmake \
   cronie \
   cronie-anacron \
@@ -79,3 +78,8 @@ dnf install \
   xfce4-power-manager
 
 dnf remove ghostscript
+
+cd /tmp
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm 
+dnf install ./google-chrome-stable_current_x86_64.rpm
+rm google-chrome-stable_current_x86_64.rpm
