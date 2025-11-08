@@ -15,11 +15,13 @@ dnf update
 dnf install \
   arandr \
   blueman \
+  blueprint-compiler \
   bluez \
   bluez-tools \
   btop \
   btrfs-assistant \
   cmake \
+  compat-lua \
   cronie \
   cronie-anacron \
   dnf-plugins-core \
@@ -31,21 +33,24 @@ dnf install \
   flameshot \
   flatpak \
   fzf \
+  gettext \
+  gh \
+  ghostty \
   gimp \
   git \
-  gh \
   git-delta \
   gnome-tweaks \
   golang \
   gparted \
   gpick \
-  ghostty \
+  gtk4-devel \
   i3status-rust \
   jq \
   lazydocker \
   lazygit \
+  libadwaita-devel \
   libvirt \
-  compat-lua \
+  luarocks \
   make \
   mariadb \
   ncdu \
@@ -53,34 +58,32 @@ dnf install \
   nmap \
   nodejs \
   npm \
-  luarocks \
-  postgresql \
   picom \
+  piper \
+  postgresql \
   python3 \
   qemu \
+  rclone \
   ripgrep \
   rsync \
   ruby-devel \
   snapper \
   telnet \
   tmux \
-  piper \
-  rclone \
   virt-manager \
   vlc \
   xclip \
   zoxide \
   zsh \
-  zig \
-  gtk4-devel \
-  libadwaita-devel \
-  blueprint-compiler \
-  gettext \
   xfce4-power-manager
 
-dnf remove ghostscript
+dnf remove ghostscript plocate
 
 cd /tmp
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm 
 dnf install ./google-chrome-stable_current_x86_64.rpm
 rm google-chrome-stable_current_x86_64.rpm
+
+## Zig 0.15.2
+dnf copr enable tofik/zig
+dnf install zig
