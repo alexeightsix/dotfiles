@@ -41,6 +41,7 @@ dnf install \
   git-delta \
   gnome-tweaks \
   golang \
+  golangci-lint \
   gparted \
   gpick \
   gtk4-devel \

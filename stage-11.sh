@@ -5,3 +5,6 @@ mkdir -p /usr/local/share/fonts/jetbrainsmono
 wget -P /tmp/fonts https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/JetBrainsMono.zip && \
 unzip /tmp/fonts/JetBrainsMono.zip -d /usr/local/share/fonts/jetbrainsmono/ && \
 rm -rf /tmp/fonts
+
+# CLAUDE
+curl -fsSL https://claude.ai/install.sh | bash

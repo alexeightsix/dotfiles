@@ -1,16 +1,25 @@
 background = #282a36
 background-blur = 10
-background-opacity = 0.97
+background-opacity = 0.95
+
+custom-shader = /home/alex/dev/ghostty-shaders/bloom.glsl
+
 cursor-color = #f8f8f2
 cursor-style = bar
 cursor-style-blink = false
 cursor-text = #282a36
+
 font-family = JetBrains Mono Nerd Font
 font-feature  = -dlig
 font-feature = -calt
 font-feature = -liga
 font-size = 10
 foreground = #f8f8f2
+
+gtk-tabs-location = bottom
+gtk-toolbar-style = flat
+gtk-wide-tabs = false
+
 palette = 0=#21222c
 palette = 10=#69ff94
 palette = 11=#ffffa5
@@ -27,9 +36,27 @@ palette = 6=#8be9fd
 palette = 7=#f8f8f2
 palette = 8=#6272a4
 palette = 9=#ff6e6e
+
 scrollback-limit = 999999999999
+
 selection-background = #44475a
 selection-foreground = #f8f8f2
+
 window-decoration = false
-window-padding-x = 0
+window-padding-x = 1
 window-padding-y = 1
+window-theme = ghostty
+
+#keybind = ctrl+b>shift+apostrophe=new_split:down
+#keybind = ctrl+b>shift+5=new_split:right
+#keybind = ctrl+b>c=new_tab
+#keybind = ctrl+h=goto_split:left
+#keybind = ctrl+j=goto_split:bottom
+#keybind = ctrl+k=goto_split:top
+#keybind = ctrl+l=goto_split:right
+#keybind = shift+enter=text:\x1b\r
+#keybind = f1=goto_tab:1
+#keybind = f2=goto_tab:2
+#keybind = f3=goto_tab:3
+#keybind = f4=goto_tab:4
+#keybind = f5=goto_tab:5
