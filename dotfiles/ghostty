@@ -17,7 +17,6 @@ font-size = 10
 foreground = #f8f8f2
 
 gtk-tabs-location = bottom
-gtk-toolbar-style = flat
 gtk-wide-tabs = false
 
 palette = 0=#21222c
@@ -47,16 +46,29 @@ window-padding-x = 1
 window-padding-y = 1
 window-theme = ghostty
 
-#keybind = ctrl+b>shift+apostrophe=new_split:down
-#keybind = ctrl+b>shift+5=new_split:right
-#keybind = ctrl+b>c=new_tab
-#keybind = ctrl+h=goto_split:left
-#keybind = ctrl+j=goto_split:bottom
-#keybind = ctrl+k=goto_split:top
-#keybind = ctrl+l=goto_split:right
-#keybind = shift+enter=text:\x1b\r
-#keybind = f1=goto_tab:1
-#keybind = f2=goto_tab:2
-#keybind = f3=goto_tab:3
-#keybind = f4=goto_tab:4
-#keybind = f5=goto_tab:5
+keybind = ctrl+b>c=new_tab
+keybind = ctrl+b>shift+5=new_split:right
+keybind = ctrl+b>shift+apostrophe=new_split:up
+keybind = ctrl+b>x=close_surface
+
+# Splits
+keybind = ctrl+h=goto_split:left
+keybind = ctrl+j=goto_split:bottom
+keybind = ctrl+k=goto_split:top
+keybind = ctrl+l=goto_split:right
+
+# Navigation
+keybind = f1=goto_tab:1
+keybind = f2=goto_tab:2
+keybind = f3=goto_tab:3
+keybind = f4=goto_tab:4
+keybind = f5=goto_tab:5
+keybind = ctrl+tab=unbind
+
+# Scroll bindings
+keybind = ctrl+shift+k=scroll_page_lines:-5
+keybind = ctrl+shift+j=scroll_page_lines:5
+keybind = ctrl+shift+g=scroll_page_lines:1000
+
+# Search binding
+keybind = ctrl+shift+slash=start_search
