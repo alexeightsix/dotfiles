@@ -10,6 +10,9 @@ dnf copr enable atim/lazydocker -y && \
 dnf copr enable atim/lazygit -y && \
 dnf copr enable pgdev/ghostty && \
 
+## Zig 0.15.2
+dnf copr enable tofik/zig && \
+
 dnf update
 
 dnf install \
@@ -40,6 +43,7 @@ dnf install \
   git \
   git-delta \
   gnome-tweaks \
+  gnome-system-monitor \
   golang \
   golangci-lint \
   gparted \
@@ -76,6 +80,7 @@ dnf install \
   xclip \
   zoxide \
   zsh \
+  zig \
   xfce4-power-manager
 
 dnf remove ghostscript plocate
@@ -84,7 +89,3 @@ cd /tmp
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm 
 dnf install ./google-chrome-stable_current_x86_64.rpm
 rm google-chrome-stable_current_x86_64.rpm
-
-## Zig 0.15.2
-dnf copr enable tofik/zig
-dnf install zig

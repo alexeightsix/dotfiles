@@ -65,10 +65,9 @@ keybind = f4=goto_tab:4
 keybind = f5=goto_tab:5
 keybind = ctrl+tab=unbind
 
-# Scroll bindings
-keybind = ctrl+shift+k=scroll_page_lines:-5
-keybind = ctrl+shift+j=scroll_page_lines:5
-keybind = ctrl+shift+g=scroll_page_lines:1000
-
 # Search binding
 keybind = ctrl+shift+slash=start_search
+
+quit-after-last-window-closed = true
+quit-after-last-window-closed-delay = 15s
+
