@@ -2,9 +2,12 @@ alias dnf='sudo snapper -c root create --description before-dnf && sudo dnf'
 alias gs='git status'
 alias ld='lazydocker'
 alias lg='lazygit'
+alias ls="eza -la --group-directories-first --color=never"
+alias untar="tar -xvzf"
 alias vi='nvim --clean'
 alias vim='nvim'
-alias untar="tar -xvzf"
+alias oc="opencode"
+alias cc="claude"
 
 export DISABLE_AUTO_UPDATE=true 
 export DISABLE_UPDATE_PROMPT=true
@@ -17,12 +20,20 @@ ZSH_TMUX_AUTOSTART=false
 ZSH_THEME="dracula"
 plugins=(docker-compose colorize fzf tmux)
 
+
+
 source $ZSH/oh-my-zsh.sh
 
 eval "$(atuin init zsh --disable-up-arrow)"
 eval "$(zoxide init zsh)"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# bun completions
+[ -s "/home/alex/.bun/_bun" ] && source "/home/alex/.bun/_bun"
 
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# opencode
+export PATH=/home/alex/.opencode/bin:$PATH
+export PATH="$HOME/.npm-global/bin:$PATH"

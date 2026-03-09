@@ -194,4 +194,4 @@ bar {
 }
 
 bindsym $mod+Shift+s exec --no-startup-id "systemctl suspend"
-bindsym $mod+d exec --no-startup-id "dmenu_run -nf '#BBBBBB' -nb '#222222' -sb '$lightblue' -sf '#EEEEEE' -fn 'monospace-10'"
+bindsym $mod+d exec --no-startup-id "vicinae toggle"
