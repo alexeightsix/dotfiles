@@ -8,6 +8,7 @@ alias vi='nvim --clean'
 alias vim='nvim'
 alias oc="opencode"
 alias cc="claude"
+alias pr="gh pr checkout"
 
 export DISABLE_AUTO_UPDATE=true 
 export DISABLE_UPDATE_PROMPT=true
@@ -21,11 +22,11 @@ ZSH_THEME="dracula"
 plugins=(docker-compose colorize fzf tmux)
 
 
-
 source $ZSH/oh-my-zsh.sh
 
 eval "$(atuin init zsh --disable-up-arrow)"
 eval "$(zoxide init zsh)"
+eval "$(zmx completions zsh)"
 
 # bun completions
 [ -s "/home/alex/.bun/_bun" ] && source "/home/alex/.bun/_bun"

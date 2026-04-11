@@ -36,7 +36,13 @@ palette = 7=#f8f8f2
 palette = 8=#6272a4
 palette = 9=#ff6e6e
 
-scrollback-limit = 999999999999
+scrollback-limit = 10000000
+
+mouse-hide-while-typing = true
+copy-on-select = clipboard
+confirm-close-surface = false
+window-save-state = always
+clipboard-trim-trailing-spaces = true
 
 selection-background = #44475a
 selection-foreground = #f8f8f2
@@ -48,10 +54,11 @@ window-theme = ghostty
 
 keybind = ctrl+b>c=new_tab
 keybind = ctrl+b>shift+5=new_split:right
-keybind = ctrl+b>shift+apostrophe=new_split:up
+keybind = ctrl+b>shift+apostrophe=new_split:down
 keybind = ctrl+b>x=close_surface
+keybind = ctrl+b>r=prompt_tab_title
 
-# Splits
+#Splits
 keybind = ctrl+h=goto_split:left
 keybind = ctrl+j=goto_split:bottom
 keybind = ctrl+k=goto_split:top
@@ -71,3 +78,4 @@ keybind = ctrl+shift+slash=start_search
 quit-after-last-window-closed = true
 quit-after-last-window-closed-delay = 15s
 
+clipboard-paste-protection = false
