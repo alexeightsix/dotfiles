@@ -7,11 +7,7 @@ dnf install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$
 dnf copr enable @go-sig/golang-rawhide -y && \
 dnf copr enable atim/i3status-rust -y && \
 dnf copr enable atim/lazydocker -y && \
-dnf copr enable atim/lazygit -y && \
 dnf copr enable pgdev/ghostty && \
-
-## Zig 0.15.2
-dnf copr enable tofik/zig && \
 
 dnf update
 
@@ -52,7 +48,6 @@ dnf install \
   i3status-rust \
   jq \
   lazydocker \
-  lazygit \
   libadwaita-devel \
   libvirt \
   luarocks \
@@ -71,7 +66,6 @@ dnf install \
   rclone \
   ripgrep \
   rsync \
-  ruby-devel \
   snapper \
   telnet \
   tmux \
@@ -80,7 +74,6 @@ dnf install \
   xclip \
   zoxide \
   zsh \
-  zig \
   xfce4-power-manager
 
 dnf remove ghostscript plocate
