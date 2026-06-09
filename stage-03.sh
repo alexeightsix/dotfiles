@@ -1,6 +1,6 @@
 if [[ $EUID -eq 0 ]]; then
     echo "Running as root"
-    exit o2
+    exit 1 
 fi
 
 # GHOSTTY
@@ -9,8 +9,7 @@ ln -s /home/alex/kickstart/dotfiles/ghostty /home/alex/.config/ghostty/config
 
 # LAZYDOCKER
 mkdir -p /home/alex/.config/lazydocker && \
-touch /home/alex/.config/lazydocker/config.yml && \
-ln -s /home/alex/kickstart/dotfiles/lazydocker.yml /home/alex/.config/lazydocker/config.yml && \
+ln -sf /home/alex/kickstart/dotfiles/lazydocker.yml /home/alex/.config/lazydocker/config.yml
 
 ## NEOVIM
 find /home/alex/.config/nvim -delete

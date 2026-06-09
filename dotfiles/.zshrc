@@ -26,7 +26,6 @@ source $ZSH/oh-my-zsh.sh
 
 eval "$(atuin init zsh --disable-up-arrow)"
 eval "$(zoxide init zsh)"
-eval "$(zmx completions zsh)"
 
 # bun completions
 [ -s "/home/alex/.bun/_bun" ] && source "/home/alex/.bun/_bun"
@@ -46,3 +45,5 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME/bin:$PATH" ;;
 esac
 # pnpm end
+
+. "$HOME/.atuin/bin/env"

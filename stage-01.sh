@@ -6,7 +6,6 @@ fi
 dnf install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release
 dnf copr enable @go-sig/golang-rawhide -y && \
 dnf copr enable atim/i3status-rust -y && \
-dnf copr enable atim/lazydocker -y && \
 dnf copr enable pgdev/ghostty && \
 
 dnf update
@@ -47,7 +46,6 @@ dnf install \
   gtk4-devel \
   i3status-rust \
   jq \
-  lazydocker \
   libadwaita-devel \
   libvirt \
   luarocks \
@@ -77,6 +75,10 @@ dnf install \
   xfce4-power-manager
 
 dnf remove ghostscript plocate
+
+# lazydocker - build latest from source (the atim/lazydocker COPR lags upstream)
+# GOBIN puts it in /usr/local/bin (on PATH) instead of the default ~/go/bin
+GOBIN=/usr/local/bin go install github.com/jesseduffield/lazydocker@latest
 
 cd /tmp
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm 
