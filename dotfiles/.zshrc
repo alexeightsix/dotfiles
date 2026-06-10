@@ -9,6 +9,10 @@ alias vim='nvim'
 alias oc="opencode"
 alias cc="claude"
 alias pr="gh pr checkout"
+alias db='bun index.tsx --username root --password root --host localhost --database spotlight_dev --port 5432 --openrouter_api_key "$OPENROUTER_API_KEY" --theme rose-pine'
+
+# machine-local secrets (API keys, etc.) — NOT tracked in git
+[ -f "$HOME/.zsh_secrets" ] && source "$HOME/.zsh_secrets"
 
 # fuzzy-find a file and open it in nvim with cwd set to the git root
 ff() {
