@@ -7,6 +7,7 @@ dnf install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$
 dnf copr enable @go-sig/golang-rawhide -y && \
 dnf copr enable atim/i3status-rust -y && \
 dnf copr enable pgdev/ghostty && \
+dnf copr enable quadratech188/vicinae -y && \
 
 dnf update
 
@@ -67,6 +68,7 @@ dnf install \
   snapper \
   telnet \
   tmux \
+  vicinae \
   virt-manager \
   vlc \
   xclip \

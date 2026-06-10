@@ -5,7 +5,10 @@ fi
 
 ## SYSTEMD
 systemctl enable --now crond.service
-systemctl enable --now sshd 
+systemctl enable --now sshd
+
+## VICINAE (per-user launcher daemon)
+runuser -u alex -- env XDG_RUNTIME_DIR=/run/user/$(id -u alex) systemctl --user enable --now vicinae.service
 
 # DISABLE SPEAKER
 touch /etc/modprobe.d/nobeep.conf && \
