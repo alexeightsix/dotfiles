@@ -1,11 +1,16 @@
 return {
-  "Mofiqul/dracula.nvim",
+  "rose-pine/neovim",
+  name = "rose-pine",
   priority = 5000,
   lazy = false,
   config = function()
+    require("rose-pine").setup({
+      styles = {
+        transparency = true,
+      },
+    })
     vim.cmd([[
-			colorscheme dracula
-			hi! Normal ctermbg=none ctermfg=none guifg=none guibg=none
+			colorscheme rose-pine
 			hi SpecialKey    guifg=#61AFEF
 			hi SpecialKeyWin guifg=#61AFEF
 			set winhighlight=SpecialKey:SpecialKeyWin

@@ -64,12 +64,17 @@ vim.lsp.config("gopls", {
         useany = true,
         ST1000 = false,
         ST1003 = false,
+        QF1008 = false,
       },
       staticcheck = true,
       gofumpt = true,
       usePlaceholders = true,
       completeUnimported = true,
       semanticTokens = true,
+      -- Keep completions scoped to what was actually typed: deepCompletion
+      -- pads qualified completions (e.g. `employee.`) with fuzzy-matched
+      -- symbols from the current package.
+      deepCompletion = false,
       directoryFilters = { "-**/node_modules", "-**/.git" },
       hints = {
         assignVariableTypes = true,

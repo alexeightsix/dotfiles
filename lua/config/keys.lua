@@ -101,15 +101,19 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end)
 
     vim.api.nvim_set_keymap("n", "<Leader>ls", ":LspRestart <CR>", { silent = true, noremap = true })
+    vim.api.nvim_set_keymap("n", "<Leader>l", ":LspRestart<CR>:e<CR>", { silent = true, noremap = true })
 
 
     vim.keymap.set("n", "<leader>fs", function()
       require("telescope.builtin").lsp_document_symbols({
-        truncate = false,
         layout_strategy = "horizontal",
         layout_config = {
           preview_width = 0.5,
         },
+        -- symbol column defaults to a fixed 25 chars, truncating long names
+        -- with "…". Use 70% of the results window instead (values < 1 are
+        -- treated as a fraction of the results window width by telescope).
+        symbol_width = 0.7,
       })
     end)
 
@@ -226,6 +230,18 @@ vim.keymap.set("n", "<leader>td", "<CMD>Gitsigns toggle_deleted<CR>")
 
 vim.keymap.set("n", "<leader>bl", "<CMD>Gitsigns blame_line<CR>")
 
+vim.keymap.set("n", "gfc", function() -- go to first uncommitted change in file
+  require("gitsigns").nav_hunk("first")
+end)
+
+vim.keymap.set("n", "<S-h>", function() -- go to next git change
+  require("gitsigns").nav_hunk("next")
+end)
+
+vim.keymap.set("n", "<S-b>", function() -- go to previous git change
+  require("gitsigns").nav_hunk("prev")
+end)
+
 vim.keymap.set("n", "gx", "<CMD>URLOpenUnderCursor<CR>")
 
 vim.keymap.set("n", "<leader>ut", "<CMD>:UndotreeToggle<CR>")
@@ -248,6 +264,15 @@ vim.keymap.set("n", "<leader>nc", function()
 end)
 
 vim.api.nvim_set_keymap("i", "<C-Right>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+
+vim.keymap.set("n", "Q", function()
+  local line = vim.api.nvim_win_get_cursor(0)[1]
+  require('gitsigns').stage_hunk({ line, line })
+end, { desc = "Stage current line" })
+
+vim.keymap.set("v", "Q", function()
+  require('gitsigns').stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+end, { desc = "Stage selected lines" })
 
 vim.keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")

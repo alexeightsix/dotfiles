@@ -27,6 +27,16 @@ vim.api.nvim_create_autocmd("VimEnter", {
   end,
 })
 
+vim.api.nvim_create_autocmd("BufEnter", {
+  group = augroup("clear_message"),
+  pattern = "*",
+  callback = function()
+    -- Clear the stale last-action message (e.g. "... written") when
+    -- switching buffers so it doesn't linger in the command line.
+    vim.api.nvim_echo({}, false, {})
+  end,
+})
+
 function _G.statusline_func()
   if vim.b.current_func then
     return string.format(" %s:%d ", vim.b.current_func, vim.b.current_func_line or 0)
