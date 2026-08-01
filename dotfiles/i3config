@@ -18,6 +18,8 @@ exec --no-startup-id pkill nm-applet
 exec --no-startup-id pkill blueman-applet
 exec --no-startup-id /home/alex/kickstart/scripts/xrandr.sh
 exec --no-startup-id systemctl --user start --now vicinae.service
+# carte: vi-style click overlay (double-press Shift). rose pine main palette
+exec --no-startup-id /home/alex/dev/carte/carte -c '#9ccfd8' -g '#403d52' -o '#f6c177'
 
 set $wsg /home/alex/.local/bin/wsgroups
 exec --no-startup-id $wsg init
@@ -217,3 +219,8 @@ bar {
 
 bindsym $mod+Shift+s exec --no-startup-id "systemctl suspend"
 bindsym $mod+d exec --no-startup-id "vicinae toggle"
+
+
+# flameshot: Ctrl+; -> interactive capture (took over oneshot's shortcut)
+bindsym Control+semicolon exec --no-startup-id flameshot gui
+bindsym F10 exec --no-startup-id flameshot gui

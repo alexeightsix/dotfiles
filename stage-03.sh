@@ -17,6 +17,10 @@ find /home/alex/.local/share/nvim -delete
 mkdir -p /home/alex/.config/nvim && \
 git clone https://github.com/alexeightsix/nvim-config.git /home/alex/.config/nvim && \
 
+# FLAMESHOT
+mkdir -p /home/alex/.config/flameshot && \
+ln -sf /home/alex/kickstart/dotfiles/flameshot.ini /home/alex/.config/flameshot/flameshot.ini
+
 # I3
 find /home/alex/.config/i3 -delete
 mkdir -p /home/alex/.config/i3
