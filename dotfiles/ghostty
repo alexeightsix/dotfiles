@@ -1,12 +1,19 @@
-theme = Rose Pine
+app-notifications = no-clipboard-copy
 
 background-blur = 10
 background-opacity = 0.95
 
-custom-shader = /home/alex/dev/ghostty-shaders/bloom.glsl
+clipboard-paste-protection = false
+clipboard-trim-trailing-spaces = true
+
+confirm-close-surface = true
+
+copy-on-select = clipboard
 
 cursor-style = bar
 cursor-style-blink = false
+
+custom-shader = /home/alex/.config/ghostty/bloom.glsl
 
 font-family = JetBrains Mono Nerd Font
 font-feature  = -dlig
@@ -17,58 +24,35 @@ font-size = 10
 gtk-tabs-location = bottom
 gtk-wide-tabs = false
 
-scrollback-limit = 10000000
+keybind = ctrl+shift+slash=start_search
 
-mouse-hide-while-typing = true
-confirm-close-surface = true
-window-save-state = always
-clipboard-trim-trailing-spaces = true
-
-# Selection goes straight to the system clipboard (not just middle-click primary)
-copy-on-select = clipboard
-# ...without a "copied to clipboard" toast every time
-app-notifications = no-clipboard-copy
-
-# Keep text readable over the transparent/blurred background
 minimum-contrast = 1.1
 
-# Don't let shell integration override the bar cursor
-shell-integration-features = no-cursor
-
-window-decoration = false
-window-padding-x = 1
-window-padding-y = 1
-window-padding-balance = true
-window-theme = ghostty
-
-# keybind = ctrl+t=unbind
-# Ctrl+Backspace -> DEL (0x7f) so it no longer collides with Ctrl+H (^H).
-# tmux has no binding for DEL, so it's a no-op in tmux and passes to the program.
-# keybind = ctrl+backspace=text:\x7f
- # keybind = ctrl+b>c=new_tab
- # keybind = ctrl+b>shift+5=new_split:right
- # keybind = ctrl+b>shift+apostrophe=new_split:down
- # keybind = ctrl+b>x=close_surface
- # keybind = ctrl+b>r=prompt_tab_title
-
-# Splits
-# keybind = ctrl+h=goto_split:left
-# keybind = ctrl+j=goto_split:bottom
-# keybind = ctrl+k=goto_split:top
-# keybind = ctrl+l=goto_split:right
-#
-# # # Navigation
-# keybind = f1=goto_tab:1
-# keybind = f2=goto_tab:2
-# keybind = f3=goto_tab:3
-# keybind = f4=goto_tab:4
-# keybind = f5=goto_tab:5
-# keybind = ctrl+tab=unbind
-
-# Search binding
-keybind = ctrl+shift+slash=start_search
+mouse-hide-while-typing = true
 
 quit-after-last-window-closed = true
 quit-after-last-window-closed-delay = 15s
 
-clipboard-paste-protection = false
+scrollback-limit = 10000000
+
+shell-integration-features = no-cursor
+
+theme = Rose Pine
+
+window-decoration = false
+window-padding-balance = true
+window-padding-x = 1
+window-padding-y = 1
+window-save-state = always
+window-theme = ghostty
+
+# Shift+Enter and Ctrl+Enter, spelled out for tmux.
+#
+# Ghostty reports modified keys through the kitty keyboard protocol, and tmux
+# asks for them the older xterm way (modifyOtherKeys), which Ghostty does not
+# implement. Neither side is wrong; they simply never agree, so tmux receives
+# a plain Enter and every program inside it sees the same. Sending the escape
+# sequence directly sidesteps the negotiation: tmux understands CSI-u input and
+# passes it along unchanged.
+keybind = shift+enter=text:\x1b[13;2u
+keybind = ctrl+enter=text:\x1b[13;5u

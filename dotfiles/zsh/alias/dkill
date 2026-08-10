@@ -1,4 +1,7 @@
 # Kill processes and docker containers matching a prefix, e.g. `dkill pf*`.
+# Drop the alias below first, or re-sourcing expands it in the function name.
+unalias dkill 2>/dev/null
+
 dkill() {
   local prefix=${1%\*}
   if [ -z "$prefix" ]; then

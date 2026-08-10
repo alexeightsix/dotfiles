@@ -14,6 +14,18 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.atuin/bin:$PATH"
 export ZSH="$HOME/.oh-my-zsh"
 
+# Record a terminal to a GIF with vhs. Prefer the real binary when it is
+# installed: a tape can only drive tools the recorder can see, and the vhs
+# image ships no git, so anything reading a repository finds nothing there.
+if [ -x "$HOME/go/bin/vhs" ]; then
+  export PATH="$HOME/go/bin:$PATH"
+else
+  # Falling back to the image: mount the folder the tape is run from, and
+  # write as you rather than as root — an output owned by root is one you
+  # cannot overwrite on the next recording.
+  alias vhs='docker run --rm -u "$(id -u):$(id -g)" -e HOME=/tmp -v "$PWD:/vhs" ghcr.io/charmbracelet/vhs'
+fi
+
 
 ZSH_TMUX_AUTOSTART=false
 ZSH_THEME="dracula"
@@ -54,3 +66,8 @@ sbx() {
     command sbx "$@"
   fi
 }
+
+# Pi
+export PATH="/home/alex/.local/share/pi-node/node-v22.23.2-linux-x64/bin:$PATH"
+
+export SBX_WORKSPACE_ROOT="/home/alex/dev/spotlight-workspaces"

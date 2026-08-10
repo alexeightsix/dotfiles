@@ -1,0 +1,8 @@
+{
+  "app.interrupt": "ctrl+escape",
+
+  "app.session.resume": "ctrl+alt+s",
+  "app.session.new": "ctrl+alt+n",
+  "app.session.fork": "ctrl+alt+f",
+  "app.session.tree": "ctrl+alt+t"
+}

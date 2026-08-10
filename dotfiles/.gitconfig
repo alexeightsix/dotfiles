@@ -1,5 +1,5 @@
 [init]
-  defaultBranch = master
+	defaultBranch = main
 [core]
     pager = delta
 [interactive]
@@ -12,3 +12,7 @@
 [user]
 	email = alexlatour@gmail.com
 	name = Alexander Latour
+[pull]
+	rebase = true
+[advice]
+	skippedCherryPicks = false
