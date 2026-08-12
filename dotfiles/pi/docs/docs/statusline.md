@@ -7,7 +7,7 @@ title: Statusline
 `extensions/statusline.ts` replaces Pi's built-in footer with a single line, ordered **most important to least, left to right**:
 
 ```
- ⠹ ask+~/dev  hold 3s  gpt-5.6-sol:high  ↑412k ↓18k  cache 71%  $1.87  ctx 34%/1.0M 660k left        ⎇ main  ~/dev/spotlight  mcp 2/5 figma  1m12s
+ INSERT   ⠹ ask+~/dev  hold 3s  gpt-5.6-sol:high  ↑412k ↓18k  cache 71%  $1.87  ctx 34%/1.0M 660k left        ⎇ main  ~/dev/spotlight  mcp 2/5 figma  1m12s
 ```
 
 Leftmost is what you glance at mid-task: is it working, is it allowed to change things, what is it costing. Rightmost is context you already know — which directory, which branch — and the clock, which matters least because it only tells you something after the fact.
@@ -16,6 +16,7 @@ Leftmost is what you glance at mid-task: is it working, is it allowed to change 
 
 | Segment | Meaning |
 | --- | --- |
+| `INSERT` | Current [Vim prompt](./vim-prompt.md) state. This is always the far-left segment and changes to NORMAL, VISUAL, V-LINE, or EX; there is no separate mode row around the editor. |
 | `⠹` | Working indicator, only while a turn runs. Pi's own in-chat loader is suppressed so there is exactly one. |
 | `ask` | Permission mode — `all`, `ask`, `ro`. Colour carries the meaning (red nothing stops it, gold you will be asked, green it cannot change anything), so the word "perm" is dropped and a column saved. `+~/dev` shows how far [grants](./modes.md) reach. |
 | `hold 3s` | Anything demanding a decision — a [held send](./send-hold.md), a [spend cap](./guardrails.md), [todo](./todo.md) progress, [claude subagents](./claude-subagents.md) — outranks passive information. |

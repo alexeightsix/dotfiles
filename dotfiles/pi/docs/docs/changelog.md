@@ -11,6 +11,16 @@ Every edit to this documentation gets an entry here. The docs are the source of 
 
 **Format:** newest first, dated. Each dated block opens with the reason for the change, then one bullet per page saying what the behaviour now is — not what was typed.
 
+## 2026-08-12 — Vim mode belongs in the statusline
+
+**Why:** a separate mode row spends vertical editor space on persistent state
+that the statusline already exists to carry.
+
+- **vim prompt and statusline** — the editor mode row is removed; colored INSERT,
+  NORMAL, VISUAL, V-LINE, and EX state is the far-left statusline segment.
+- **requirements** — the prior above-prompt placement is superseded by statusline
+  placement before every existing segment.
+
 ## 2026-08-12 — Vim prompt behavior belongs to the home configuration
 
 **Why:** submission keys and editor-state presentation are personal Pi behavior;

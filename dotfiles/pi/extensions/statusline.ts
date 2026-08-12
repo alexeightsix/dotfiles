@@ -3,7 +3,7 @@
  *
  * Replaces pi's built-in footer with a single line:
  *
- *   model:thinking  perm:ask  plan   ↑12k ↓3.4k  $0.184  ctx 18% · 812k left  4m07s  ⎇ main
+ *   INSERT  model:thinking  perm:ask  plan   ↑12k ↓3.4k  $0.184  ctx 18% · 812k left  4m07s  ⎇ main
  *
  * Left  — what the agent is right now (model, thinking level, extension statuses
  *         such as the permission mode and plan mode).
@@ -148,6 +148,9 @@ export default function (pi: ExtensionAPI) {
 					const statuses = footerData.getExtensionStatuses();
 
 					const left: string[] = [];
+					const vimMode = statuses.get("vim-mode");
+					if (vimMode) left.push(vimMode);
+
 					// Padded so the spinner does not sit flush against the terminal
 					// edge, and so the line does not shift when it appears.
 					left.push(
@@ -162,7 +165,7 @@ export default function (pi: ExtensionAPI) {
 					// Anything demanding a decision — a held send, a spend cap, todo
 					// progress, claude subagents — outranks passive information.
 					for (const [key, status] of statuses) {
-						if (!status || key === "permission-mode" || key === "mcp") continue;
+						if (!status || key === "vim-mode" || key === "permission-mode" || key === "mcp") continue;
 						left.push(status);
 					}
 

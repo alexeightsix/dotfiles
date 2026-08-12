@@ -21,8 +21,10 @@ export class VimPromptEditor implements EditorComponent {
 	constructor(
 		private readonly base: VimEditor,
 		private readonly quit: () => void,
-		private readonly colorizeModeLabel: (mode: ModeColor, text: string) => string,
-	) {}
+		private readonly setModeStatus: (mode: ModeColor, text: string) => void,
+	) {
+		this.publishModeStatus();
+	}
 
 	getMode(): VimMode {
 		return this.mode;
@@ -54,6 +56,7 @@ export class VimPromptEditor implements EditorComponent {
 			this.inExMode = true;
 			this.exCommand = ":";
 		}
+		this.publishModeStatus();
 	}
 
 	private handleExInput(data: string): void {
@@ -61,6 +64,7 @@ export class VimPromptEditor implements EditorComponent {
 			this.resetExMode();
 			this.base.handleInput(data);
 			this.refreshMode();
+			this.publishModeStatus();
 			return;
 		}
 
@@ -69,6 +73,7 @@ export class VimPromptEditor implements EditorComponent {
 			this.exCommand = this.exCommand.slice(0, -1);
 			this.base.handleInput(data);
 			if (exitsExMode) this.resetExMode();
+			this.publishModeStatus();
 			return;
 		}
 
@@ -93,19 +98,25 @@ export class VimPromptEditor implements EditorComponent {
 				this.allowBaseSubmit = false;
 			}
 			this.refreshMode();
+			this.publishModeStatus();
 			return;
 		}
 
 		this.exCommand += data;
 		this.base.handleInput(data);
+		this.publishModeStatus();
 	}
 
 	private submitPrompt(): void {
 		const prompt = this.getExpandedText();
-		if (!prompt.trim()) return;
+		if (!prompt.trim()) {
+			this.publishModeStatus();
+			return;
+		}
 		this.setText("");
 		this.onSubmit?.(prompt);
 		this.refreshMode();
+		this.publishModeStatus();
 	}
 
 	private cancelBaseExMode(): void {
@@ -128,6 +139,22 @@ export class VimPromptEditor implements EditorComponent {
 
 	private refreshMode(): void {
 		this.mode = this.base.getMode?.() ?? this.mode;
+	}
+
+	private publishModeStatus(): void {
+		if (this.inExMode) {
+			this.setModeStatus("ex", `EX ${this.exCommand}_`);
+			return;
+		}
+		if (this.mode === "insert") {
+			this.setModeStatus("insert", "INSERT");
+			return;
+		}
+		if (this.mode === "normal") {
+			this.setModeStatus("normal", "NORMAL");
+			return;
+		}
+		this.setModeStatus("visual", this.mode === "visual-line" ? "V-LINE" : "VISUAL");
 	}
 
 	private isPlainReturn(data: string): boolean {
@@ -161,15 +188,7 @@ export class VimPromptEditor implements EditorComponent {
 		)?.[0];
 		if (!label) return lines;
 
-		const mode: ModeColor = label.startsWith(" EX")
-			? "ex"
-			: label.startsWith(" INSERT")
-				? "insert"
-				: label.startsWith(" NORMAL")
-					? "normal"
-					: "visual";
-		const coloredLabel = this.colorizeModeLabel(mode, label);
-		return [coloredLabel, ...lines.slice(0, last)];
+		return lines.slice(0, last);
 	}
 }
 
@@ -196,7 +215,11 @@ export default function (pi: ExtensionAPI) {
 				return new VimPromptEditor(
 					previous(tui, theme, keybindings) as VimEditor,
 					() => ctx.shutdown(),
-					(mode, text) => uiTheme.fg(tokens[mode], `\x1b[7m${text}\x1b[27m`),
+					(mode, text) =>
+						ctx.ui.setStatus(
+							"vim-mode",
+							uiTheme.fg(tokens[mode], `\x1b[7m ${text} \x1b[27m`),
+						),
 				);
 			});
 		}, 0);
