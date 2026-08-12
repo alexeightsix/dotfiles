@@ -13,6 +13,7 @@ const sidebars: SidebarsConfig = {
         'claude-as-model',
         'drive',
         'modes',
+        'vim-prompt',
         'sessions',
         'send-hold',
         'drafts',

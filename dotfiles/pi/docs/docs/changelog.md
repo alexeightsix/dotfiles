@@ -11,6 +11,18 @@ Every edit to this documentation gets an entry here. The docs are the source of 
 
 **Format:** newest first, dated. Each dated block opens with the reason for the change, then one bullet per page saying what the behaviour now is — not what was typed.
 
+## 2026-08-12 — Vim prompt behavior belongs to the home configuration
+
+**Why:** submission keys and editor-state presentation are personal Pi behavior;
+keeping them in one project made the editor inconsistent elsewhere, and placing
+the mode below the prompt made state arrive after the thing it describes.
+
+- **vim prompt** — new page. The global pi-vim wrapper makes EX `:w`/`:W` the
+  only submission path, keeps EX `:q`, and renders the compact colored mode label
+  above the prompt's top border in every working directory.
+- **requirements** — global ownership and above-input rendering supersede the
+  project-local wrapper and Ctrl+Enter submission behavior.
+
 ## 2026-08-10 — session spend needs a chronological explanation
 
 **Why:** totals and per-model aggregation cannot answer which individual step was slow or expensive. The transcript already owns provider usage, so a useful history should add measured elapsed time without creating a second accounting source that can drift.

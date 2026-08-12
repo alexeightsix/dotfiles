@@ -106,6 +106,12 @@ Rows 1–39 are a backfill from the 2026-08-10 changelog. Later rows were record
 | 74 | Document how each provider's spend and usage is actually obtained, and whether an official API could replace it | done | `docs/collection.md` covers the tmux `/usage` probe and state cache, the Codex app-server JSON-RPC methods, and the OpenCode local database, field by field; `docs/apis.md` records that the published Anthropic and OpenAI usage APIs meter API-key billing rather than subscription windows, that Codex's local JSON-RPC is the one genuine API of the four, and that OpenCode Go's balance stays `null` by choice. |
 | 75 | Rename the tool from `spend` to `burn` and publish it | done | Tool, binary, module, unit, port env and cache path renamed (`~/dev/burn`, `burn`, `burn.py`, `burn.service`, `BURN_PORT`, `~/.cache/burn`) while the JSON contract's own `spend` fields are untouched; the reinstalled unit collected four `ok` agents over `/api/refresh` and the CLI printed the snapshot; pushed to github.com/alexeightsix/burn. |
 
+## Latest additions
+
+| # | Requirement | Status | What remains |
+| --- | --- | --- | --- |
+| 115 | Make the pi-vim wrapper global: only EX `:w`/`:W` submits, EX `:q` quits, and the compact colored mode label renders above the prompt border in every working directory | done | `link.sh` installed the tracked global extension; fresh tmux Pi sessions in `/tmp` and Pistafit showed colored INSERT/EX labels immediately above the border, blocked Enter and Ctrl+Enter, submitted exact witness payloads once through `:W` and `:w`, and exited through `:q`. This supersedes #103's Ctrl+Enter submission behavior. |
+
 ## Blocked and declined
 
 | # | Requirement | Status | Reason |
