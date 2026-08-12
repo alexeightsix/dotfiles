@@ -11,6 +11,15 @@ Every edit to this documentation gets an entry here. The docs are the source of 
 
 **Format:** newest first, dated. Each dated block opens with the reason for the change, then one bullet per page saying what the behaviour now is — not what was typed.
 
+## 2026-08-12 — Vim wrapping must preserve every clipboard path
+
+**Why:** moving modal submission and mode display into a wrapper must not break
+Pi's terminal paste or system clipboard integration, nor pi-vim's yank and put.
+
+- **vim prompt** — clipboard behavior is required to survive wrapper composition.
+- **requirements** — bracketed paste, Ctrl+V text/image paste, yank mirroring, and put
+  are tracked as independently exercised paths.
+
 ## 2026-08-12 — Vim mode belongs in the statusline
 
 **Why:** a separate mode row spends vertical editor space on persistent state

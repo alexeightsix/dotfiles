@@ -5,8 +5,15 @@ import { matchesKey, stripTerminalSequences } from "@earendil-works/pi-tui";
 type VimMode = "insert" | "normal" | "visual" | "visual-line";
 type ModeColor = "insert" | "normal" | "visual" | "ex";
 
+type AppActionHandler = () => void;
+
 type VimEditor = EditorComponent & {
+	actionHandlers: Map<string, AppActionHandler>;
 	getMode?: () => VimMode;
+	onCtrlD?: AppActionHandler;
+	onEscape?: AppActionHandler;
+	onExtensionShortcut?: (data: string) => boolean;
+	onPasteImage?: AppActionHandler;
 	onSubmit?: (text: string) => void;
 };
 
@@ -24,6 +31,23 @@ export class VimPromptEditor implements EditorComponent {
 		private readonly setModeStatus: (mode: ModeColor, text: string) => void,
 	) {
 		this.publishModeStatus();
+	}
+
+	get actionHandlers(): Map<string, AppActionHandler> {
+		return this.base.actionHandlers;
+	}
+
+	get onCtrlD(): AppActionHandler | undefined { return this.base.onCtrlD; }
+	set onCtrlD(handler: AppActionHandler | undefined) { this.base.onCtrlD = handler; }
+	get onEscape(): AppActionHandler | undefined { return this.base.onEscape; }
+	set onEscape(handler: AppActionHandler | undefined) { this.base.onEscape = handler; }
+	get onPasteImage(): AppActionHandler | undefined { return this.base.onPasteImage; }
+	set onPasteImage(handler: AppActionHandler | undefined) { this.base.onPasteImage = handler; }
+	get onExtensionShortcut(): ((data: string) => boolean) | undefined {
+		return this.base.onExtensionShortcut;
+	}
+	set onExtensionShortcut(handler: ((data: string) => boolean) | undefined) {
+		this.base.onExtensionShortcut = handler;
 	}
 
 	getMode(): VimMode {

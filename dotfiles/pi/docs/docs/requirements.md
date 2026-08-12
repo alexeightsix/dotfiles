@@ -112,6 +112,7 @@ Rows 1–39 are a backfill from the 2026-08-10 changelog. Later rows were record
 | --- | --- | --- | --- |
 | 115 | Make the pi-vim wrapper global: only EX `:w`/`:W` submits, EX `:q` quits, and the compact colored mode label renders above the prompt border in every working directory | done | `link.sh` installed the tracked global extension; fresh tmux Pi sessions in `/tmp` and Pistafit showed colored INSERT/EX labels immediately above the border, blocked Enter and Ctrl+Enter, submitted exact witness payloads once through `:W` and `:w`, and exited through `:q`. This supersedes #103's Ctrl+Enter submission behavior; #122 supersedes its mode-label placement. |
 | 122 | Remove the separate editor mode row and show Vim mode as the far-left statusline segment, before all existing statuses | done | ANSI-preserving captures from a fresh 160-column Pi TUI showed exactly one colored INSERT, NORMAL, VISUAL, V-LINE, and `EX :W_` indicator at the statusline's left edge, with no mode text in the editor; `:W` still submitted the exact witness once and `:q` exited. |
+| 123 | Preserve terminal bracketed paste, system-clipboard paste, Vim yank-to-clipboard, and Vim put while the global prompt wrapper is active | done | `tests/vim-clipboard.e2e.sh` reproduced the dead Ctrl+V path, then passed all four real tmux/X11 paths after the wrapper forwarded pi-vim's app handlers: exact bracketed-paste submission, Ctrl+V insertion, exact yank mirroring, and exact clipboard put submission. |
 
 ## Blocked and declined
 

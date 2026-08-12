@@ -25,5 +25,9 @@ as submission paths; a Normal-mode `w` remains a motion, and Insert-mode `:w`
 or `:W` remains literal text. EX `:q` followed by `Enter` shuts Pi down
 gracefully, while Insert-mode `:q` remains literal text.
 
+The wrapper preserves every clipboard path supplied by Pi and pi-vim:
+terminal bracketed paste, `Ctrl+V` system-clipboard text/image paste, Vim yanks
+mirrored to the system clipboard, and Normal-mode `p`/`P` puts.
+
 Provided by `extensions/vim-prompt.ts`, layered over the globally installed
 `npm:pi-vim` package.
