@@ -101,6 +101,38 @@ vim.lsp.config("intelephense", {
   },
 })
 
+-- Rust language semantics. nvim-lspconfig already anchors the root at the
+-- Cargo workspace (it asks `cargo metadata`), so no root markers are needed.
+vim.lsp.config("rust_analyzer", {
+  settings = {
+    ["rust-analyzer"] = {
+      -- Run clippy instead of plain `cargo check` on save, so the buffer shows
+      -- the same lints CI does rather than only compiler errors.
+      check = {
+        command = "clippy",
+      },
+    },
+  },
+})
+
+-- English language semantics. The `els` binary ships with the language's own
+-- toolchain (built from this repo: `go build -o ~/.local/bin/els ./cmd/els`),
+-- so Mason must not install a second copy. It serves whatever .en file is
+-- open, so only the source marker is needed for a sensible root.
+vim.lsp.config("english", {
+  cmd = { "els" },
+  root_markers = { "index.en" },
+  filetypes = { "english" },
+})
+
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = { "*.en" },
+  callback = function()
+    vim.bo.filetype = "english"
+  end,
+})
+
+-- Servers Mason downloads and keeps up to date.
 local lsp_servers = {
   "cssls",
   "docker_compose_language_service",
@@ -111,6 +143,15 @@ local lsp_servers = {
   "tailwindcss",
   "templ",
   "ts_ls",
+}
+
+-- Servers that ship with the language's own toolchain, so Mason must not
+-- install a second copy. rust-analyzer comes from rustup
+-- (`rustup component add rust-analyzer`), which keeps it matched to the
+-- compiler the project is actually built with.
+local toolchain_servers = {
+  "rust_analyzer",
+  "english",
 }
 
 require("mason-lspconfig").setup {
@@ -140,3 +181,4 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 vim.lsp.enable(lsp_servers)
+vim.lsp.enable(toolchain_servers)

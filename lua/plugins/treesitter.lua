@@ -9,6 +9,7 @@ return {
         'go',
         'html',
         'php',
+        'rust',
         'tsx',
         'typescript',
         'html',
