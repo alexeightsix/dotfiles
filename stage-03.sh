@@ -12,10 +12,15 @@ mkdir -p /home/alex/.config/lazydocker && \
 ln -sf /home/alex/kickstart/dotfiles/lazydocker.yml /home/alex/.config/lazydocker/config.yml
 
 ## NEOVIM
-find /home/alex/.config/nvim -delete
-find /home/alex/.local/share/nvim -delete
-mkdir -p /home/alex/.config/nvim && \
-git clone https://github.com/alexeightsix/nvim-config.git /home/alex/.config/nvim && \
+nvim_source=/home/alex/kickstart/dotfiles/nvim
+nvim_target=/home/alex/.config/nvim
+mkdir -p /home/alex/.config
+if [[ -e "$nvim_target" && ! -L "$nvim_target" ]]; then
+    nvim_backup="${nvim_target}.backup-$(date +%Y%m%d-%H%M%S)"
+    mv "$nvim_target" "$nvim_backup"
+    echo "Backed up the previous Neovim config to $nvim_backup"
+fi
+ln -sfn "$nvim_source" "$nvim_target"
 
 # FLAMESHOT
 mkdir -p /home/alex/.config/flameshot && \
