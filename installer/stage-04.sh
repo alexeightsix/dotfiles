@@ -8,11 +8,11 @@ flatpak install --user flathub io.beekeeperstudio.Studio -y
 flatpak install --user flathub md.obsidian.Obsidian -y
 flatpak install --user flathub us.zoom.Zoom -y
 
-sudo ln -sf /home/alex/.local/share/flatpak/exports/bin/com.discordapp.Discord /usr/bin/discord
-sudo ln -sf /home/alex/.local/share/flatpak/exports/bin/com.getpostman.Postman /usr/bin/postman
-sudo ln -sf /home/alex/.local/share/flatpak/exports/bin/com.slack.Slack /usr/bin/slack
-sudo ln -sf /home/alex/.local/share/flatpak/exports/bin/com.transmissionbt.Transmission /usr/bin/transmission
-sudo ln -sf /home/alex/.local/share/flatpak/exports/bin/hu.irl.cameractrls /usr/bin/cameractrls
-sudo ln -sf /home/alex/.local/share/flatpak/exports/bin/io.beekeeperstudio.Studio /usr/bin/beekeeper
-sudo ln -sf /home/alex/.local/share/flatpak/exports/bin/md.obsidian.Obsidian /usr/bin/obsidian
-sudo ln -sf /home/alex/.local/share/flatpak/exports/bin/us.zoom.Zoom /usr/bin/zoom
+sudo ln -sf $HOME/.local/share/flatpak/exports/bin/com.discordapp.Discord /usr/bin/discord
+sudo ln -sf $HOME/.local/share/flatpak/exports/bin/com.getpostman.Postman /usr/bin/postman
+sudo ln -sf $HOME/.local/share/flatpak/exports/bin/com.slack.Slack /usr/bin/slack
+sudo ln -sf $HOME/.local/share/flatpak/exports/bin/com.transmissionbt.Transmission /usr/bin/transmission
+sudo ln -sf $HOME/.local/share/flatpak/exports/bin/hu.irl.cameractrls /usr/bin/cameractrls
+sudo ln -sf $HOME/.local/share/flatpak/exports/bin/io.beekeeperstudio.Studio /usr/bin/beekeeper
+sudo ln -sf $HOME/.local/share/flatpak/exports/bin/md.obsidian.Obsidian /usr/bin/obsidian
+sudo ln -sf $HOME/.local/share/flatpak/exports/bin/us.zoom.Zoom /usr/bin/zoom
