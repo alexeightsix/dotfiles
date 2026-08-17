@@ -9,7 +9,7 @@
 #
 
 # The repository root, from this file rather than the caller's cwd — the stages
-# are runnable as `bash installer/stage-03.sh` or `cd installer && bash ...`.
+# are runnable as `bash bootstrap/stage-03.sh` or `cd bootstrap && bash ...`.
 KICKSTART="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 DOTFILES="$KICKSTART/dotfiles"
 
