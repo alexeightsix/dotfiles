@@ -1,4 +1,7 @@
-# Alex's dotfiles
+# dev-env
+
+Alex's machine: the packages, the configuration and the scripts that put both
+in place — on a desktop, and on a disposable Incus instance.
 
 ## TL;DR
 
@@ -10,7 +13,7 @@ wallpapers/  wallpaper-1..5
 ```
 
 ```bash
-git clone https://github.com/alexeightsix/dotfiles.git ~/kickstart   # any name works
+git clone https://github.com/alexeightsix/dev-env.git ~/kickstart   # any name works
 cd ~/kickstart
 sudo bash installer/stage-01.sh   # packages
 sudo bash installer/stage-02.sh   # services, docker
