@@ -249,7 +249,7 @@ vim.keymap.set("n", "<leader>ut", "<CMD>:UndotreeToggle<CR>")
 vim.keymap.set("n", "<leader>gt", function()
   vim.cmd("new")
   local buf = vim.api.nvim_get_current_buf()
-  vim.fn.termopen("bash /home/alex/dev/spotlight-dev-master/generate-types.sh", {
+  vim.fn.termopen("bash " .. vim.env.HOME .. "/dev/spotlight-dev-master/generate-types.sh", {
     on_exit = function(_, code)
       if code == 0 and vim.api.nvim_buf_is_valid(buf) then
         vim.api.nvim_buf_delete(buf, { force = true })

@@ -3,7 +3,7 @@
 # to /tmp/<name>.old
 restore() {
   local backup_device=/dev/sda1
-  local backup_mount=/run/media/alex/Timeshift
+  local backup_mount="/run/media/$(id -un)/Timeshift"
 
   if [[ $# -ne 1 ]]; then
     echo "usage: restore <file|dir>" >&2

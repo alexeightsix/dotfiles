@@ -1,4 +1,16 @@
-for alias_file in "$HOME/kickstart/dotfiles/zsh/alias/"*(N); do
+# Where this checkout lives, worked out from this file's own location rather
+# than written down. %x is the file currently being sourced — ~/.zshrc — and :A
+# resolves that symlink back to the real file inside the repository, so the
+# clone can be named anything and sit anywhere. It is ~/kickstart on the
+# desktop and ~/dotfiles inside an Incus instance; neither needs to be spelled
+# out here.
+: "${DOTFILES:=${${(%):-%x}:A:h}}"
+export DOTFILES
+
+# One file per alias, named after it, in zsh/alias/. Aliases are not written
+# inline here: a name you cannot grep for by filename is a name you forget you
+# defined.
+for alias_file in "$DOTFILES/zsh/alias/"*(N); do
   source "$alias_file"
 done
 unset alias_file
@@ -14,60 +26,49 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.atuin/bin:$PATH"
 export ZSH="$HOME/.oh-my-zsh"
 
-# Record a terminal to a GIF with vhs. Prefer the real binary when it is
-# installed: a tape can only drive tools the recorder can see, and the vhs
-# image ships no git, so anything reading a repository finds nothing there.
-if [ -x "$HOME/go/bin/vhs" ]; then
-  export PATH="$HOME/go/bin:$PATH"
-else
-  # Falling back to the image: mount the folder the tape is run from, and
-  # write as you rather than as root — an output owned by root is one you
-  # cannot overwrite on the next recording.
-  alias vhs='docker run --rm -u "$(id -u):$(id -g)" -e HOME=/tmp -v "$PWD:/vhs" ghcr.io/charmbracelet/vhs'
-fi
-
-
 ZSH_TMUX_AUTOSTART=false
 ZSH_THEME="dracula"
 plugins=(docker-compose colorize fzf tmux)
 
-source $ZSH/oh-my-zsh.sh
+# Guarded: this same file is cloned into disposable Incus instances, and a
+# missing oh-my-zsh should cost you the theme, not the shell.
+[ -r "$ZSH/oh-my-zsh.sh" ] && source "$ZSH/oh-my-zsh.sh"
 
-eval "$(atuin init zsh --disable-up-arrow)"
-eval "$(zoxide init zsh)"
+command -v atuin  >/dev/null 2>&1 && eval "$(atuin init zsh --disable-up-arrow)"
+command -v zoxide >/dev/null 2>&1 && eval "$(zoxide init zsh)"
 
 # bun completions
-[ -s "/home/alex/.bun/_bun" ] && source "/home/alex/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 # opencode
-export PATH=/home/alex/.opencode/bin:$PATH
+export PATH="$HOME/.opencode/bin:$PATH"
 export PATH="$HOME/.npm-global/bin:$PATH"
 
 # pnpm
-export PNPM_HOME="/home/alex/.local/share/pnpm"
+export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME/bin:"*) ;;
   *) export PATH="$PNPM_HOME/bin:$PATH" ;;
 esac
 # pnpm end
 
-. "$HOME/.atuin/bin/env"
-
-# sbx: let `sbx fzf` cd the current shell (a child process cannot).
-sbx() {
-  if [ "$1" = "fzf" ]; then
-    local d
-    d="$(command sbx fzf)" && cd "$d"
-  else
-    command sbx "$@"
-  fi
-}
+# Only present when atuin came from its own installer; the distro package puts
+# the binary on PATH and ships no env file.
+[ -f "$HOME/.atuin/bin/env" ] && . "$HOME/.atuin/bin/env"
 
 # Pi
-export PATH="/home/alex/.local/share/pi-node/node-v22.23.2-linux-x64/bin:$PATH"
+export PATH="$PATH:$HOME/.local/share/pi-node/node-v22.23.2-linux-x64/bin"
 
-export SBX_WORKSPACE_ROOT="/home/alex/dev/spotlight-workspaces"
+# `!copy` at the prompt -> last line of output on the clipboard. Sourced last:
+# it wraps whatever accept-line widget the plugins above left in place.
+[ -r "$DOTFILES/zsh/copyline.plugin.zsh" ] && source "$DOTFILES/zsh/copyline.plugin.zsh"
+
+export SBX_WORKSPACE_ROOT="$HOME/dev/spotlight-workspaces"
+
+# Yours, per machine. Never tracked, never overwritten — this is where an
+# instance or a second laptop puts what only it needs.
+[ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"

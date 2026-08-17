@@ -13,7 +13,7 @@ copy-on-select = clipboard
 cursor-style = bar
 cursor-style-blink = false
 
-custom-shader = /home/alex/.config/ghostty/bloom.glsl
+custom-shader = ~/.config/ghostty/bloom.glsl
 
 font-family = JetBrains Mono Nerd Font
 font-feature  = -dlig

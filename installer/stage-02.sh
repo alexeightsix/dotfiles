@@ -3,12 +3,14 @@ if [[ $(/usr/bin/id -u) -ne 0 ]]; then
     exit
 fi
 
+source "$(dirname "${BASH_SOURCE[0]}")/common.sh"
+
 ## SYSTEMD
 systemctl enable --now crond.service
 systemctl enable --now sshd
 
 ## VICINAE (per-user launcher daemon)
-runuser -u alex -- env XDG_RUNTIME_DIR=/run/user/$(id -u alex) systemctl --user enable --now vicinae.service
+runuser -u "$TARGET_USER" -- env XDG_RUNTIME_DIR="/run/user/$(id -u "$TARGET_USER")" systemctl --user enable --now vicinae.service
 
 # DISABLE SPEAKER
 touch /etc/modprobe.d/nobeep.conf && \
@@ -23,4 +25,4 @@ dnf-3 config-manager --add-repo https://download.docker.com/linux/fedora/docker-
 dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin && \
 systemctl enable docker && \
 systemctl start docker && \
-usermod -aG docker alex
+usermod -aG docker "$TARGET_USER"
